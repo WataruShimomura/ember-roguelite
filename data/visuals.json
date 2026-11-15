@@ -1,0 +1,21 @@
+{
+  "font": "", "background": "", "bgm": "",
+  "stats": {"MAX_HP": "最大HP", "POWER": "効果量", "SPEED": "素早さ"},
+  "units": {
+    "knight": {"name": "剣士", "subtitle": "VANGUARD", "glyph": "剣", "color": "#e7bb75", "portrait": ""},
+    "mage": {"name": "魔術師", "subtitle": "PYROMANCER", "glyph": "炎", "color": "#ca95de", "portrait": ""},
+    "cleric": {"name": "僧侶", "subtitle": "KEEPER", "glyph": "祈", "color": "#7acbb3", "portrait": ""},
+    "warlock": {"name": "敵術士", "subtitle": "ASH SEER", "glyph": "呪", "color": "#e68c87", "portrait": ""},
+    "sentinel": {"name": "敵盾兵", "subtitle": "IRON WARD", "glyph": "盾", "color": "#8ea8ce", "portrait": ""}
+  },
+  "skills": {"attack": "通常攻撃", "guard": "防御", "strike": "猛撃", "pressure": "牽制", "fireball": "火球", "wave": "火炎波", "heal": "回復", "inspire": "激励", "charge": "詠唱準備", "nova": "灰燼の大波"},
+  "equipment": {
+    "ring": {"name": "力の指輪", "description": "効果量 +3"},
+    "boots": {"name": "迅速の靴", "description": "素早さ +2"},
+    "amulet": {"name": "生命の護符", "description": "最大HP +12"},
+    "crest": {"name": "活力の紋章", "description": "通常攻撃のTP獲得 +1"},
+    "ember": {"name": "炎の印", "description": "火傷確率 +15ポイント"},
+    "stone": {"name": "守護の石", "description": "防御時の被ダメージ ×0.35"}
+  },
+  "statuses": {"burn": "火傷"}
+}

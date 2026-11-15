@@ -1,0 +1,29 @@
+# Godot import caches and local editor state
+.godot/
+.godot-test-user/
+*.tmp
+
+# Locally downloaded engine and its portable settings
+tools/*.exe
+tools/*.zip
+tools/editor_data/
+tools/._sc_
+tools/_sc_
+
+# Generated test logs and screenshots
+tests/artifacts/
+
+# Exported builds
+/builds/
+/exports/
+
+# Machine-specific settings and credentials
+/.codex/
+/.agents/
+/.aws/
+.env
+.env.*
+!.env.example
+export_credentials.cfg
+.DS_Store
+Thumbs.db

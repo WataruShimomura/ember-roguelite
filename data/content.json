@@ -1,0 +1,36 @@
+{
+  "stats": ["MAX_HP", "POWER", "SPEED"],
+  "rules": {"initial_tp": 2, "max_tp": 5, "guard_multiplier": 0.5},
+  "units": {
+    "knight": {"team": "ally", "stats": {"MAX_HP": 100, "POWER": 15, "SPEED": 18}, "skills": ["strike", "pressure"]},
+    "mage": {"team": "ally", "stats": {"MAX_HP": 72, "POWER": 17, "SPEED": 15}, "skills": ["fireball", "wave"]},
+    "cleric": {"team": "ally", "stats": {"MAX_HP": 82, "POWER": 11, "SPEED": 10}, "skills": ["heal", "inspire"]},
+    "warlock": {"team": "enemy", "stats": {"MAX_HP": 65, "POWER": 12, "SPEED": 13}, "skills": [], "policy": "caster"},
+    "sentinel": {"team": "enemy", "stats": {"MAX_HP": 110, "POWER": 9, "SPEED": 7}, "skills": [], "policy": "shield"}
+  },
+  "skills": {
+    "attack": {"cost": 0, "target": "enemy", "tp_gain": 1, "effects": [{"kind": "damage", "base": 0}]},
+    "guard": {"cost": 0, "target": "self", "effects": [{"kind": "guard"}]},
+    "strike": {"cost": 2, "target": "enemy", "effects": [{"kind": "damage", "base": 8}]},
+    "pressure": {"cost": 1, "target": "enemy", "effects": [{"kind": "damage", "base": 2}, {"kind": "modifier", "stat": "POWER", "value": -3}]},
+    "fireball": {"cost": 2, "target": "enemy", "effects": [{"kind": "damage", "base": 5}, {"kind": "status", "status": "burn", "chance": 0.6}]},
+    "wave": {"cost": 3, "target": "all_enemies", "effects": [{"kind": "damage", "base": 2}]},
+    "heal": {"cost": 2, "target": "ally", "effects": [{"kind": "heal", "base": 10}]},
+    "inspire": {"cost": 3, "target": "all_allies", "effects": [{"kind": "modifier", "stat": "POWER", "value": 2}]},
+    "charge": {"cost": 0, "target": "self", "effects": [{"kind": "charge"}]},
+    "nova": {"cost": 0, "target": "all_enemies", "effects": [{"kind": "damage", "base": 12}]}
+  },
+  "equipment": {
+    "ring": {"effects": [{"kind": "stat", "stat": "POWER", "value": 3}]},
+    "boots": {"effects": [{"kind": "stat", "stat": "SPEED", "value": 2}]},
+    "amulet": {"effects": [{"kind": "stat", "stat": "MAX_HP", "value": 12}]},
+    "crest": {"effects": [{"kind": "tp_gain", "value": 1}]},
+    "ember": {"effects": [{"kind": "status_chance", "status": "burn", "value": 0.15}]},
+    "stone": {"effects": [{"kind": "guard_multiplier", "value": 0.35}]}
+  },
+  "statuses": {"burn": {"duration": 2, "timing": "round_end", "damage": 4, "ignores_guard": true}},
+  "policies": {
+    "caster": {"normal": "attack", "charge": "charge", "charged": "nova", "charge_every": 3, "charge_offset": 2},
+    "shield": {"normal": "attack", "alternate": "guard", "alternate_every": 2}
+  }
+}
