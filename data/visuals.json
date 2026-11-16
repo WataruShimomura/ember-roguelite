@@ -1,21 +1,135 @@
 {
-  "font": "", "background": "", "bgm": "",
-  "stats": {"MAX_HP": "最大HP", "POWER": "効果量", "SPEED": "素早さ"},
+  "font": "",
+  "background": "",
+  "bgm": "",
+  "stats": {
+    "MAX_HP": "最大HP",
+    "POWER": "効果量",
+    "SPEED": "素早さ",
+    "MAX_TP": "最大TP"
+  },
   "units": {
-    "knight": {"name": "剣士", "subtitle": "VANGUARD", "glyph": "剣", "color": "#e7bb75", "portrait": ""},
-    "mage": {"name": "魔術師", "subtitle": "PYROMANCER", "glyph": "炎", "color": "#ca95de", "portrait": ""},
-    "cleric": {"name": "僧侶", "subtitle": "KEEPER", "glyph": "祈", "color": "#7acbb3", "portrait": ""},
-    "warlock": {"name": "敵術士", "subtitle": "ASH SEER", "glyph": "呪", "color": "#e68c87", "portrait": ""},
-    "sentinel": {"name": "敵盾兵", "subtitle": "IRON WARD", "glyph": "盾", "color": "#8ea8ce", "portrait": ""}
+    "knight": {
+      "name": "剣士",
+      "subtitle": "VANGUARD",
+      "glyph": "剣",
+      "color": "#e7bb75",
+      "portrait": ""
+    },
+    "mage": {
+      "name": "魔術師",
+      "subtitle": "PYROMANCER",
+      "glyph": "炎",
+      "color": "#ca95de",
+      "portrait": ""
+    },
+    "cleric": {
+      "name": "僧侶",
+      "subtitle": "KEEPER",
+      "glyph": "祈",
+      "color": "#7acbb3",
+      "portrait": ""
+    },
+    "warlock": {
+      "name": "敵術士",
+      "subtitle": "ASH SEER",
+      "glyph": "呪",
+      "color": "#e68c87",
+      "portrait": ""
+    },
+    "sentinel": {
+      "name": "敵盾兵",
+      "subtitle": "IRON WARD",
+      "glyph": "盾",
+      "color": "#8ea8ce",
+      "portrait": ""
+    },
+    "mender": {
+      "name": "再生術士",
+      "subtitle": "MENDER",
+      "glyph": "癒",
+      "color": "#7acbb3",
+      "portrait": ""
+    },
+    "elite": {
+      "name": "灰の門番",
+      "subtitle": "ELITE",
+      "glyph": "将",
+      "color": "#e7bb75",
+      "portrait": ""
+    },
+    "boss": {
+      "name": "灰冠の主",
+      "subtitle": "BOSS",
+      "glyph": "王",
+      "color": "#e68c87",
+      "portrait": ""
+    }
   },
-  "skills": {"attack": "通常攻撃", "guard": "防御", "strike": "猛撃", "pressure": "牽制", "fireball": "火球", "wave": "火炎波", "heal": "回復", "inspire": "激励", "charge": "詠唱準備", "nova": "灰燼の大波"},
+  "skills": {
+    "attack": "通常攻撃",
+    "guard": "防御",
+    "strike": "猛撃",
+    "pressure": "牽制の構え",
+    "fireball": "火球",
+    "wave": "火炎波",
+    "heal": "回復",
+    "inspire": "激励",
+    "charge": "詠唱準備",
+    "nova": "灰燼の大波",
+    "mend": "再生",
+    "item_potion": "治療薬",
+    "item_ether": "霊薬",
+    "item_revive": "蘇生薬"
+  },
   "equipment": {
-    "ring": {"name": "力の指輪", "description": "効果量 +3"},
-    "boots": {"name": "迅速の靴", "description": "素早さ +2"},
-    "amulet": {"name": "生命の護符", "description": "最大HP +12"},
-    "crest": {"name": "活力の紋章", "description": "通常攻撃のTP獲得 +1"},
-    "ember": {"name": "炎の印", "description": "火傷確率 +15ポイント"},
-    "stone": {"name": "守護の石", "description": "防御時の被ダメージ ×0.35"}
+    "ring": {
+      "name": "力の指輪",
+      "description": "効果量 +3"
+    },
+    "boots": {
+      "name": "迅速の靴",
+      "description": "素早さ +2"
+    },
+    "amulet": {
+      "name": "生命の護符",
+      "description": "最大HP +12"
+    },
+    "crest": {
+      "name": "活力の紋章",
+      "description": "新規削減HPの6%をTP吸収（切捨て）"
+    },
+    "ember": {
+      "name": "炎の印",
+      "description": "火傷確率 +15ポイント"
+    },
+    "stone": {
+      "name": "守護の石",
+      "description": "被ダメージ×0.8 / 7威力で反撃（連鎖なし）"
+    },
+    "chalice": {
+      "name": "血の聖杯",
+      "description": "新規削減HPの30%をHP吸収（切捨て）"
+    },
+    "reservoir": {
+      "name": "蓄霊の器",
+      "description": "最大TP+3 / 現在TPは補充しない"
+    },
+    "focus": {
+      "name": "集中の符",
+      "description": "TP消費−1（最低1、有料スキルのみ）"
+    },
+    "edge": {
+      "name": "捨身の刃",
+      "description": "効果量+5 / 最大HP−10"
+    }
   },
-  "statuses": {"burn": "火傷"}
+  "statuses": {
+    "burn": "火傷"
+  },
+  "items": {
+    "potion": "治療薬",
+    "ether": "霊薬",
+    "revive": "蘇生薬"
+  }
 }

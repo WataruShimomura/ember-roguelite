@@ -18,14 +18,16 @@ func _init(content) -> void:
 	resolver = Resolver.new(content)
 	policy = Policy.new(content)
 
-func start(loadout: Dictionary, seed_value: int = 20261115) -> void:
-	state = State.new(catalog, loadout, seed_value)
+func start(loadout: Dictionary, seed_value: int = 20261115, party: Dictionary = {}, enemies: Array = ["warlock", "sentinel"], inventory: Dictionary = {}) -> void:
+	assert(catalog.errors.is_empty(), "Invalid content definitions")
+	state = State.new(catalog, loadout, seed_value, party, enemies, inventory)
 	state.record("start", {"seed": seed_value, "order": state.order.duplicate()})
 	for id in state.order:
 		for effect in catalog.equipment_effects(state.units[id], "stat"):
 			resolver.equipment_event(state, effect, id)
-	begin_round()
-	advance()
+	if not check_winner():
+		begin_round()
+		advance()
 
 func begin_round() -> void:
 	state.cursor = 0
@@ -35,12 +37,14 @@ func begin_round() -> void:
 	state.record("round", {"intents": state.intents.duplicate(true)})
 
 func commands(actor_id: String) -> Array:
-	return ["attack"] + catalog.data.units[actor_id].skills + ["guard"]
+	return ["attack"] + catalog.data.units[actor_id].skills
 
 func legal_targets(actor_id: String, skill_id: String) -> Array:
 	var mode = catalog.data.skills[skill_id].target
 	if mode == "self" or mode.begins_with("all_"):
 		return calculator.targets(state, actor_id, skill_id)
+	if mode == "fallen_ally":
+		return state.order.filter(func(id): return state.units[id].team == state.units[actor_id].team and state.units[id].hp == 0)
 	var team = state.units[actor_id].team
 	if mode == "enemy":
 		team = "enemy" if team == "ally" else "ally"
@@ -60,53 +64,52 @@ func intent_preview(id: String) -> Dictionary:
 	var result = calculator.calculate(state, id, intent.skill, targets) if active else {}
 	return {"active": active, "intent": intent.duplicate(true), "calculation": result}
 
-func submit(actor_id: String, skill_id: String, target_id: String, expected_revision: int) -> bool:
+func submit(actor_id: String, skill_id: String, target_id: String, expected_revision: int, item_id: String = "") -> bool:
 	if state.phase != "input" or state.revision != expected_revision or state.actor() != actor_id:
 		return false
-	if state.units[actor_id].team != "ally" or not commands(actor_id).has(skill_id):
+	if state.units[actor_id].team != "ally" or state.units[actor_id].hp <= 0:
+		return false
+	if item_id.is_empty():
+		if not commands(actor_id).has(skill_id): return false
+	elif not catalog.data.items.has(item_id) or catalog.data.items[item_id].skill != skill_id or state.inventory.get(item_id, 0) <= 0:
 		return false
 	var calculation = preview(actor_id, skill_id, target_id)
-	if calculation.targets.is_empty() or calculation.cost > state.tp:
+	if calculation.targets.is_empty() or calculation.cost > state.units[actor_id].tp:
 		return false
 	state.phase = "resolving"
+	if not item_id.is_empty():
+		state.inventory[item_id] -= 1
+		state.record("item", {"actor": actor_id, "item": item_id, "remaining": state.inventory[item_id]})
 	execute(calculation)
 	state.cursor += 1
 	state.revision += 1
 	advance()
 	return true
 
-func change_tp(delta: int, actor_id: String, sources: Array) -> void:
-	var before = state.tp
-	state.tp = clampi(before + delta, 0, int(catalog.data.rules.max_tp))
-	state.record("tp", {"actor": actor_id, "before": before, "after": state.tp, "requested": delta, "amount": state.tp - before, "sources": sources})
-	for source in sources:
-		resolver.equipment_event(state, source, actor_id)
-
 func execute(calculation: Dictionary) -> void:
 	var actor = state.units[calculation.actor]
 	var expiring = actor.modifiers.duplicate(true)
 	state.record("action", {"actor": calculation.actor, "skill": calculation.skill, "targets": calculation.targets.duplicate(), "calculation": calculation.duplicate(true)})
 	if calculation.cost > 0:
-		change_tp(-calculation.cost, calculation.actor, [{"source": "skill:" + calculation.skill, "value": -calculation.cost}])
+		resolver.change_tp(state, calculation.actor, -calculation.cost, "skill:" + calculation.skill)
+		for source in calculation.cost_sources: resolver.equipment_event(state, source, calculation.actor)
 	resolver.apply(state, calculation)
-	if calculation.tp_gain > 0:
-		change_tp(calculation.tp_gain, calculation.actor, calculation.tp_sources)
 	for modifier in expiring:
 		# Only consume modifiers present before this action, including an existing self buff.
 		var index = actor.modifiers.find(modifier)
 		if index >= 0:
 			actor.modifiers.remove_at(index)
 			state.record("modifier_expired", {"actor": calculation.actor, "source": modifier.source})
-	if calculation.skill == "nova":
+	if catalog.data.skills[calculation.skill].get("consumes_charge", false):
 		actor.charged = false
 	actor.acted = true
 	check_winner()
 
 func check_winner() -> bool:
-	if state.alive("enemy").is_empty():
-		state.winner = "ally"
-	elif state.alive("ally").is_empty():
+	if state.alive("ally").is_empty():
 		state.winner = "enemy"
+	elif state.alive("enemy").is_empty():
+		state.winner = "ally"
 	if not state.winner.is_empty():
 		state.phase = "finished"
 		state.record("finish", {"winner": state.winner})

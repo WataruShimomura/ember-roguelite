@@ -5,6 +5,16 @@ var catalog
 func _init(content) -> void:
 	catalog = content
 
+func cost(unit: Dictionary, skill_id: String) -> Dictionary:
+	var base = int(catalog.data.skills[skill_id].cost)
+	var total = base
+	var sources: Array = [{"source": "skill:" + skill_id, "value": base}]
+	if base > 0:
+		for effect in catalog.equipment_effects(unit, "cost_reduction"):
+			total -= int(effect.value)
+			sources.append({"source": effect.source, "value": -int(effect.value)})
+	return {"amount": maxi(1, total) if base > 0 else 0, "sources": sources}
+
 func targets(state, actor_id: String, skill_id: String, target_id: String = "") -> Array:
 	var actor = state.units[actor_id]
 	var mode = catalog.data.skills[skill_id].target
@@ -13,75 +23,97 @@ func targets(state, actor_id: String, skill_id: String, target_id: String = "") 
 		"self": return [actor_id] if actor.hp > 0 else []
 		"all_enemies": return state.alive(opposing)
 		"all_allies": return state.alive(actor.team)
-		"enemy", "ally":
+		"enemy", "ally", "fallen_ally":
 			var team = opposing if mode == "enemy" else actor.team
-			if state.units.has(target_id) and state.units[target_id].team == team and state.units[target_id].hp > 0:
-				return [target_id]
+			if state.units.has(target_id):
+				var target = state.units[target_id]
+				if target.team == team and ((target.hp == 0) if mode == "fallen_ally" else (target.hp > 0)): return [target_id]
 	return []
 
 func power_sources(unit: Dictionary) -> Array:
 	var sources: Array = [{"source": "unit:%s:POWER" % unit.id, "operation": "+", "value": catalog.data.units[unit.id].stats.POWER}]
 	for effect in catalog.equipment_effects(unit, "stat"):
-		if effect.stat == "POWER":
-			sources.append({"source": effect.source, "operation": "+", "value": effect.value})
+		if effect.stat == "POWER": sources.append({"source": effect.source, "operation": "+", "value": effect.value})
 	for modifier in unit.modifiers:
-		if modifier.stat == "POWER":
-			sources.append({"source": modifier.source, "operation": "+", "value": modifier.value})
+		if modifier.stat == "POWER": sources.append({"source": modifier.source, "operation": "+", "value": modifier.value})
 	return sources
 
-func guard_info(unit: Dictionary) -> Dictionary:
-	var multiplier = float(catalog.data.rules.guard_multiplier)
-	var source = "command:guard"
-	for effect in catalog.equipment_effects(unit, "guard_multiplier"):
-		if float(effect.value) < multiplier:
-			multiplier = float(effect.value)
-			source = effect.source
-	return {"value": multiplier, "source": source}
+func append_recovery(projected: Dictionary, effects: Array, actor: String, target_id: String, kind: String, raw: int, source: String, credit: int = 0) -> void:
+	var target = projected[target_id]
+	var field = "tp" if kind == "tp" else "hp"
+	var maximum = int(target.stats.MAX_TP if field == "tp" else target.stats.MAX_HP)
+	var amount = mini(maxi(0, raw), maximum - int(target[field]))
+	if target.hp <= 0 and kind != "revive": return
+	target[field] += amount
+	effects.append({"kind": kind, "actor": actor, "target": target_id, "amount": amount, "raw": raw, "source": source, "credit": credit, "sources": [{"source": source, "operation": "+", "value": raw}]})
+
+func append_damage(projected: Dictionary, effects: Array, actor_id: String, target_id: String, base: float, sources: Array, source: String, counter_allowed: bool = true, bypass: bool = false) -> void:
+	var actor = projected[actor_id]
+	var target = projected[target_id]
+	if target.hp <= 0: return
+	var amount = maxf(0, base)
+	var trace = sources.duplicate(true)
+	if not bypass:
+		for reduction in catalog.equipment_effects(target, "damage_multiplier"):
+			amount *= reduction.value
+			trace.append({"source": reduction.source, "operation": "×", "value": reduction.value, "owner": target_id})
+		if target.guard:
+			amount *= float(catalog.data.rules.guard_multiplier)
+			trace.append({"source": "stance:guard", "operation": "×", "value": catalog.data.rules.guard_multiplier})
+	var raw = int(floor(amount))
+	var actual = mini(raw, int(target.hp))
+	target.hp -= actual
+	var credit = maxi(0, int(target.low_water) - int(target.hp)) if target.team == "enemy" else 0
+	target.low_water = mini(int(target.low_water), int(target.hp))
+	effects.append({"kind": "damage", "actor": actor_id, "target": target_id, "raw": raw, "amount": actual, "credit": credit, "low_after": target.low_water, "source": source, "sources": trace, "counter": not counter_allowed and source.begins_with("equipment:")})
+	# A single credit per damage is reused by all siphons; no credit from re-damage.
+	if credit > 0 and actor.hp > 0 and actor.team != target.team:
+		for kind in ["siphon_hp", "siphon_tp"]:
+			for siphon in catalog.equipment_effects(actor, kind):
+				append_recovery(projected, effects, actor_id, actor_id, "heal" if kind == "siphon_hp" else "tp", int(floor(credit * float(siphon.value))), siphon.source, credit)
+	if counter_allowed and actual > 0 and target.hp > 0 and actor.hp > 0:
+		for counter in catalog.equipment_effects(target, "counter"):
+			if actor.hp <= 0: break
+			append_damage(projected, effects, target_id, actor_id, float(counter.value), [{"source": counter.source, "operation": "+", "value": counter.value}], counter.source, false)
 
 func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> Dictionary:
-	var actor = state.units[actor_id]
+	var projected = state.units.duplicate(true)
+	var actor = projected[actor_id]
 	var skill = catalog.data.skills[skill_id]
-	var result = {"actor": actor_id, "skill": skill_id, "targets": target_ids.duplicate(), "cost": int(skill.cost) if actor.team == "ally" else 0, "tp_gain": 0, "tp_sources": [], "effects": []}
-	if skill.has("tp_gain") and actor.team == "ally":
-		result.tp_gain = int(skill.tp_gain)
-		result.tp_sources.append({"source": "skill:" + skill_id, "value": int(skill.tp_gain)})
-		for effect in catalog.equipment_effects(actor, "tp_gain"):
-			result.tp_gain += int(effect.value)
-			result.tp_sources.append({"source": effect.source, "value": int(effect.value)})
+	var payment = cost(actor, skill_id)
+	var result = {"actor": actor_id, "skill": skill_id, "targets": target_ids.duplicate(), "cost": payment.amount, "cost_sources": payment.sources, "effects": []}
+	actor.tp = maxi(0, int(actor.tp) - int(payment.amount))
 	for target_id in target_ids:
-		var target = state.units[target_id]
+		if actor.hp <= 0: break
 		for definition in skill.effects:
+			var recipient = actor_id if definition.get("recipient", "") == "self" else target_id
+			var target = projected[recipient]
+			if target.hp <= 0 and definition.kind != "revive": continue
+			var source = "skill:" + skill_id
 			var effect = definition.duplicate(true)
-			effect.target = target_id
-			effect.source = "skill:" + skill_id
-			effect.sources = []
-			match effect.kind:
+			effect.merge({"actor": actor_id, "target": recipient, "source": source, "sources": []})
+			match definition.kind:
 				"damage", "heal":
-					var sources = power_sources(actor)
-					var amount: float = 0
-					for source in sources:
-						amount += float(source.value)
-						source.owner = actor_id
-						source.trigger = "power"
-					sources.append({"source": effect.source, "operation": "+", "value": definition.get("base", 0)})
-					amount = maxf(0, amount + float(definition.get("base", 0)))
-					if effect.kind == "damage" and target.guard:
-						var guard = guard_info(target)
-						amount *= guard.value
-						sources.append({"source": guard.source, "operation": "×", "value": guard.value, "owner": target_id, "trigger": "guard"})
-					effect.raw = int(floor(amount))
-					effect.amount = mini(effect.raw, int(target.hp)) if effect.kind == "damage" else mini(effect.raw, int(target.stats.MAX_HP - target.hp))
-					effect.sources = sources
+					var sources: Array = [] if definition.get("flat", false) else power_sources(actor)
+					var amount = float(definition.get("base", 0))
+					for entry in sources: amount += entry.value
+					sources.append({"source": source, "operation": "+", "value": definition.get("base", 0)})
+					if definition.kind == "damage": append_damage(projected, result.effects, actor_id, recipient, amount, sources, source)
+					else:
+						append_recovery(projected, result.effects, actor_id, recipient, "heal", int(floor(maxf(0, amount))), source)
+						result.effects[-1].sources = sources
+				"tp", "revive": append_recovery(projected, result.effects, actor_id, recipient, definition.kind, int(definition.base), source)
 				"status":
-					effect.sources.append({"source": effect.source, "operation": "+", "value": effect.chance})
+					effect.sources.append({"source": source, "operation": "+", "value": effect.chance})
 					for bonus in catalog.equipment_effects(actor, "status_chance"):
 						if bonus.get("status", "") == effect.status:
 							effect.chance += bonus.value
-							effect.sources.append({"source": bonus.source, "operation": "+", "value": bonus.value, "owner": actor_id, "trigger": "status_chance"})
+							effect.sources.append({"source": bonus.source, "operation": "+", "value": bonus.value})
 					effect.chance = clampf(effect.chance, 0, 1)
+					result.effects.append(effect)
 				"guard":
-					var guard = guard_info(actor)
-					effect.multiplier = guard.value
-					effect.sources.append({"source": guard.source, "operation": "×", "value": guard.value})
-			result.effects.append(effect)
+					target.guard = true
+					effect.multiplier = catalog.data.rules.guard_multiplier
+					result.effects.append(effect)
+				"modifier", "charge": result.effects.append(effect)
 	return result
