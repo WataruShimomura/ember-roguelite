@@ -3,7 +3,7 @@ extends "res://ui/view_base.gd"
 var launch: Button
 
 func build() -> void:
-	heading("残り火の旅", "VER.0.2  /  4戦の短い冒険。HPと個別TPを、次の戦いへ。")
+	heading("残り火の旅", "VER.0.3  /  4戦の短い冒険。HPと個別TPを、次の戦いへ。")
 	add_child(wrapped("通常戦 → 報酬 → 通常戦 → 報酬 → 祭壇 → 強敵 → 報酬 → 最奥ボス。全滅で冒険終了。", 18))
 	var row = HBoxContainer.new()
 	add_child(row)
@@ -31,7 +31,7 @@ func build() -> void:
 			var item = app.loadout[id][slot]
 			card.add_child(wrapped(visuals.data.equipment.get(item, {}).get("description", "装備なし"), 14))
 	var info = panel(self)
-	info.add_child(wrapped("通常攻撃はTP消費0・無条件のTP獲得なし。スキルは使用者本人のTPを消費。\n吸収は敵の最低到達HPを更新した分だけ。アイテムは有限で、使用に1手番必要です。", 17))
+	info.add_child(wrapped("戦闘開始TP+2 / R2以降は有限プール4から自然回復+1。Lv2・3・4で成長。\n吸収は敵の最低到達HPを更新した分だけ。アイテムは有限で、使用に1手番必要です。", 17))
 	var controls = HBoxContainer.new()
 	add_child(controls)
 	controls.add_child(label("冒険シード", 16, muted))

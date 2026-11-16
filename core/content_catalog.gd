@@ -83,7 +83,39 @@ func validate() -> Array[String]:
 		if not choice.get("kind", "") in ["restore", "equipment"]: errors.append("Invalid event effect")
 		elif choice.kind == "equipment" and not data.equipment.has(choice.get("equipment", "")): errors.append("Invalid event equipment")
 	if data.event.get("choices", []).size() < 2: errors.append("Event needs at least two choices")
+	var recovery = data.rules.get("tp_recovery", {})
+	for field in ["entry", "pool", "round"]:
+		if not recovery.get(field, null) is float and not recovery.get(field, null) is int: errors.append("Invalid TP recovery field: " + field)
+		elif recovery[field] < 0 or int(recovery[field]) != recovery[field]: errors.append("Recovery requires nonnegative integers: " + field)
+	if not data.has("growth"):
+		errors.append("Missing growth definitions")
+	else:
+		for level in ["2", "3", "4"]:
+			if not data.growth.levels.has(level): errors.append("Missing growth level: " + level)
+			else:
+				var step = data.growth.levels[level]
+				if not step.kind in ["choice", "slots"]: errors.append("Unknown growth step: " + level)
+				if step.kind == "choice" and step.get("options", []).size() < 2: errors.append("Growth needs alternatives: " + level)
+				if step.kind == "slots" and step.get("slots", 0) < 3: errors.append("Growth needs expanded slots: " + level)
+				for id in data.growth.levels[level].get("options", []):
+					if not data.growth.options.has(id): errors.append("Unknown growth choice: " + id)
+		for id in data.growth.options:
+			var growth = data.growth.options[id]
+			if not growth.get("kind", "") in ["spread", "detonate", "counter_stance", "counter_tp", "burn_bonus", "entry_bonus"]: errors.append("Unknown growth kind: " + id)
+			if growth.has("skill") and not data.skills.has(growth.skill): errors.append("Unknown growth skill: " + id)
+			if growth.has("unit") and not growth.unit in party_ids(): errors.append("Unknown growth unit: " + id)
+			if growth.has("status") and not data.statuses.has(growth.status): errors.append("Unknown growth status: " + id)
 	return errors.duplicate()
+
+func growth_effects(unit: Dictionary, kind: String) -> Array:
+	var found: Array = []
+	for id in unit.get("growth", []):
+		var definition = data.growth.options[id]
+		if definition.kind == kind and (not definition.has("unit") or definition.unit == unit.id):
+			var effect = definition.duplicate(true)
+			effect.source = "growth:" + id
+			found.append(effect)
+	return found
 
 func party_ids() -> Array:
 	return data.units.keys().filter(func(id): return data.units[id].team == "ally")

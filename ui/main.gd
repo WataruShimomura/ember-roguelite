@@ -8,6 +8,7 @@ const Battle = preload("res://ui/battle_view.gd")
 const Reward = preload("res://ui/reward_view.gd")
 const Camp = preload("res://ui/camp_view.gd")
 const Results = preload("res://ui/results_view.gd")
+const Growth = preload("res://ui/growth_view.gd")
 var catalog = Content.new()
 var manager = Manager.new(catalog)
 var visuals = Visuals.new()
@@ -18,6 +19,9 @@ var screen: String = "preparation"
 var host: VBoxContainer
 var current_view
 var detail: AcceptDialog
+var last_feedback: Array = []
+var feedback_enabled: bool = true
+var displayed_battle_seed: int = -1
 
 func _ready() -> void:
 	loadout = catalog.data.presets[preset].duplicate(true)
@@ -54,6 +58,8 @@ func _ready() -> void:
 	render()
 
 func start_run() -> void:
+	last_feedback.clear()
+	displayed_battle_seed = -1
 	if not manager.new_run(seed_value, loadout):
 		show_text("開始できません", "\n".join(catalog.errors))
 		return
@@ -73,8 +79,12 @@ func render() -> void:
 		"preparation": view_type = Preparation
 		"battle": view_type = Battle
 		"reward", "event": view_type = Reward
+		"growth": view_type = Growth
 		"ready", "intermission": view_type = Camp
 		_: view_type = Results
+	if screen == "battle" and displayed_battle_seed != manager.battle.state.battle_seed:
+		displayed_battle_seed = manager.battle.state.battle_seed
+		last_feedback = manager.battle.state.events.filter(func(e): return e.type == "tp")
 	current_view = view_type.new()
 	host.add_child(current_view)
 	current_view.configure(self)

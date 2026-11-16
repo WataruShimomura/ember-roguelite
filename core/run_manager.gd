@@ -2,7 +2,7 @@ extends RefCounted
 
 const RunState = preload("res://core/run_state.gd")
 const BattleEngine = preload("res://core/battle_engine.gd")
-const INSTRUCTION_COMMIT = "c2921672a4679ecc9e5c9e439c98278b56960db8"
+const INSTRUCTION_COMMIT = "33122df11cb0e04332968c47a8515cef415542c8"
 var catalog
 var state
 var battle
@@ -42,7 +42,13 @@ func start_battle(revision: int) -> bool:
 	battle = BattleEngine.new(catalog)
 	var encounter = catalog.data.encounters[state.route[state.node]]
 	var seed_value = (state.seed_value * 1103515245 + (state.node + 1) * 12345) & 0x7fffffff
-	battle.start(state.loadout, seed_value, state.party, encounter.enemies, state.inventory)
+	var entry_sources: Array = []
+	if catalog.data.rules.tp_recovery.enabled:
+		entry_sources.append({"source": "recovery:entry", "value": catalog.data.rules.tp_recovery.entry})
+		for id in state.upgrades:
+			var growth = catalog.data.growth.options[id]
+			if growth.kind == "entry_bonus": entry_sources.append({"source": "growth:" + id, "value": growth.value})
+	battle.start(state.loadout, seed_value, state.party, encounter.enemies, state.inventory, state.upgrades, entry_sources)
 	state.phase = "battle"
 	state.revision += 1
 	state.record("battle_start", {"seed": seed_value, "encounter": state.route[state.node], "resources": battle_start})
@@ -105,6 +111,31 @@ func choose_reward(index: int, revision: int) -> bool:
 	state.offers.clear()
 	state.node += 1
 	state.phase = "event" if state.node == 2 else "intermission"
+	if catalog.data.growth.enabled:
+		state.level = state.node + 1
+		state.growth_options = catalog.data.growth.levels[str(state.level)].get("options", []).duplicate()
+		state.phase = "growth"
+		state.record("level", {"level": state.level})
+	state.revision += 1
+	return true
+
+func choose_growth(index: int, revision: int) -> bool:
+	if not valid("growth", revision): return false
+	var definition = catalog.data.growth.levels[str(state.level)]
+	if definition.kind == "slots":
+		if index != 0: return false
+		state.equipment_slots = int(definition.slots)
+		for id in state.loadout:
+			while state.loadout[id].size() < state.equipment_slots: state.loadout[id].append("")
+		state.record("growth", {"level": state.level, "choice": "equipment_slots", "slots": state.equipment_slots})
+	else:
+		if index < 0 or index >= state.growth_options.size(): return false
+		var id = state.growth_options[index]
+		if id in state.upgrades: return false
+		state.upgrades.append(id)
+		state.record("growth", {"level": state.level, "choice": id})
+	state.growth_options.clear()
+	state.phase = "event" if state.node == 2 else "intermission"
 	state.revision += 1
 	return true
 
@@ -123,7 +154,7 @@ func choose_event(index: int, revision: int) -> bool:
 
 func equip(actor: String, slot: int, id: String, revision: int) -> bool:
 	if state == null or state.revision != revision or not state.phase in ["ready", "intermission"]: return false
-	if not state.party.has(actor) or slot < 0 or slot > 1: return false
+	if not state.party.has(actor) or slot < 0 or slot >= state.equipment_slots: return false
 	if id != "" and (not catalog.data.equipment.has(id) or state.gear.get(id, 0) <= 0): return false
 	var previous = state.loadout[actor][slot]
 	if previous == id: return false

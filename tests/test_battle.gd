@@ -8,6 +8,12 @@ var assertions: int = 0
 var groups: int = 0
 var summaries: Array = []
 
+func legacy_content():
+	var content = Content.new()
+	content.data.rules.tp_recovery.enabled = false
+	content.data.growth.enabled = false
+	return content
+
 func check(condition: bool, message: String) -> void:
 	assertions += 1
 	if not condition:
@@ -19,7 +25,7 @@ func group(title: String) -> void:
 	print("TEST %02d  %s" % [groups, title])
 
 func fresh(loadout: Dictionary = {}, party: Dictionary = {}, inventory: Dictionary = {}):
-	var b = BattleEngine.new(Content.new())
+	var b = BattleEngine.new(legacy_content())
 	b.start(loadout, 42, party, ["warlock", "sentinel"], inventory)
 	return b
 
@@ -60,7 +66,7 @@ func play_battle(b, mode: String = "burst") -> void:
 	check(b.state.phase == "finished", "battle terminates")
 
 func play_run(seed_value: int, mode: String = "burst"):
-	var r = RunManager.new(Content.new())
+	var r = RunManager.new(legacy_content())
 	r.new_run(seed_value, r.catalog.data.presets[mode])
 	var safety: int = 0
 	while r.state.phase != "finished" and safety < 40:
@@ -78,11 +84,11 @@ func play_run(seed_value: int, mode: String = "burst"):
 
 func _initialize() -> void:
 	group("definitions validate and unknown IDs/effect types report errors")
-	var c = Content.new()
+	var c = legacy_content()
 	check(c.errors.is_empty(), "all definitions valid")
 	c.data.skills.attack.effects[0].kind = "unknown"
 	check(c.validate().any(func(e): return "Unknown effect" in e), "unknown effect rejected")
-	c = Content.new()
+	c = legacy_content()
 	c.data.units.knight.skills.append("missing")
 	check(not c.validate().is_empty(), "invalid skill reference rejected")
 
@@ -96,7 +102,7 @@ func _initialize() -> void:
 	act(b); act(b)
 	check(b.state.round == 2, "round wraps")
 	check(b.state.events.filter(func(e): return e.type == "action" and e.round == 1).size() == 5, "once per unit")
-	c = Content.new(); c.data.units.mage.stats.SPEED = 18
+	c = legacy_content(); c.data.units.mage.stats.SPEED = 18
 	b = BattleEngine.new(c); b.start({})
 	check(b.state.order.slice(0, 2) == ["knight", "mage"], "stable ID tie")
 
@@ -229,7 +235,7 @@ func _initialize() -> void:
 	check(b.state.intents.warlock.skill == "nova" and b.state.intents.warlock.targets.size() == 3, "R3 fixed AoE targets")
 
 	group("carry resources, clear statuses, import once")
-	var r = RunManager.new(Content.new())
+	var r = RunManager.new(legacy_content())
 	check(r.new_run(42, r.catalog.data.presets.sustain), "run initialized")
 	r.start_battle(r.state.revision); play_battle(r.battle, "sustain")
 	var end = r.battle.snapshot(); var rev = r.state.revision
@@ -242,7 +248,7 @@ func _initialize() -> void:
 	check(r.battle.state.units.values().all(func(u): return u.statuses.is_empty() and u.modifiers.is_empty() and not u.guard), "battle-local state reset")
 
 	group("equipment maxima clamp only, no resurrection/refill")
-	r = RunManager.new(Content.new()); r.new_run(42, r.catalog.data.presets.burst)
+	r = RunManager.new(legacy_content()); r.new_run(42, r.catalog.data.presets.burst)
 	r.state.gear.reservoir = 1; r.state.gear.amulet = 1
 	r.state.party.knight.hp = 20; r.state.party.knight.tp = 1
 	r.equip("knight", 0, "reservoir", r.state.revision)
@@ -259,7 +265,7 @@ func _initialize() -> void:
 	check(r.state.party.knight.hp == 90, "decreased MAX_HP clamps current HP")
 
 	group("three rewards, finite event, item capacity and double choice")
-	r = RunManager.new(Content.new()); r.new_run(42, r.catalog.data.presets.burst)
+	r = RunManager.new(legacy_content()); r.new_run(42, r.catalog.data.presets.burst)
 	r.start_battle(r.state.revision); play_battle(r.battle); r.collect_battle(r.state.revision); r.continue_result(r.state.revision)
 	check(r.state.offers.size() == 3, "three reward categories")
 	rev = r.state.revision
@@ -284,12 +290,12 @@ func _initialize() -> void:
 		print("BUILD ", mode, " ", r.state.outcome, " / total rounds ", r.result().total.rounds, " / final ", r.state.party)
 	var variations: Dictionary = {}
 	for seed_value in range(12):
-		r = RunManager.new(Content.new()); r.new_run(seed_value, r.catalog.data.presets.burst)
+		r = RunManager.new(legacy_content()); r.new_run(seed_value, r.catalog.data.presets.burst)
 		variations[str(r.state.route)] = true
 	check(variations.size() > 1, "different seeds vary encounters")
 	var reward_variations: Dictionary = {}
 	for seed_value in range(8):
-		r = RunManager.new(Content.new()); r.new_run(seed_value, r.catalog.data.presets.burst)
+		r = RunManager.new(legacy_content()); r.new_run(seed_value, r.catalog.data.presets.burst)
 		# Offer generation is tested after its legitimate predecessor state.
 		r.start_battle(r.state.revision); play_battle(r.battle); r.collect_battle(r.state.revision)
 		var control = r.reward_rng.state
@@ -300,7 +306,7 @@ func _initialize() -> void:
 	check(reward_variations.size() > 1, "different seeds vary rewards")
 
 	group("defeat, finish rejection, retry resets every run resource")
-	r = RunManager.new(Content.new()); r.new_run(42, r.catalog.data.presets.burst)
+	r = RunManager.new(legacy_content()); r.new_run(42, r.catalog.data.presets.burst)
 	for unit in r.state.party.values(): unit.hp = 0
 	r.start_battle(r.state.revision)
 	check(r.battle.state.winner == "enemy", "fallen party loses immediately")
@@ -310,7 +316,7 @@ func _initialize() -> void:
 	r.collect_battle(r.state.revision); r.continue_result(r.state.revision)
 	check(r.state.outcome == "defeat" and not r.start_battle(r.state.revision), "defeat terminates adventure")
 	r.new_run(42, r.catalog.data.presets.burst)
-	var clean = RunManager.new(Content.new()); clean.new_run(42, clean.catalog.data.presets.burst)
+	var clean = RunManager.new(legacy_content()); clean.new_run(42, clean.catalog.data.presets.burst)
 	check(r.snapshot() == clean.snapshot(), "retry resets state/log/gear/items/route")
 
 	DirAccess.make_dir_recursive_absolute("res://tests/artifacts")

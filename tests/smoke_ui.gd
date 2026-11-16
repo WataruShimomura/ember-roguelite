@@ -4,6 +4,8 @@ var failures: int = 0
 var checks: int = 0
 var game
 var captured: Dictionary = {}
+var equipped_third: bool = false
+var checked_growth_marker: bool = false
 
 func check(condition: bool, message: String) -> void:
 	checks += 1
@@ -21,7 +23,7 @@ func capture(id: String) -> void:
 	if DisplayServer.get_name() != "headless":
 		await process_frame
 		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("res://tests/artifacts/v02_" + id + ".png")
+		root.get_texture().get_image().save_png("res://tests/artifacts/v03_" + id + ".png")
 
 func key(code: int) -> void:
 	var event = InputEventKey.new()
@@ -61,6 +63,13 @@ func run() -> void:
 	await process_frame
 	check(game.screen == "battle" and game.current_view.command_buttons.size() == 4, "three personal commands plus items")
 	check(not game.manager.battle.commands("knight").has("guard"), "common guard absent in UI flow")
+	check(game.current_view.pool_labels.size() == 3 and game.current_view.tp_gauges.size() == 3, "personal TP gauges and pools visible")
+	check(game.current_view.unit_panels.knight.global_position.x < game.current_view.unit_panels.warlock.global_position.x, "party and enemies occupy opposing sides")
+	var before_redraw = game.manager.battle.snapshot()
+	game.render(); await process_frame
+	check(before_redraw == game.manager.battle.snapshot(), "redraw does not restore TP or pool")
+	check(game.current_view.confirm.get_global_rect().end.y <= game.size.y - 12, "execute button visible without scrolling")
+	check(game.current_view.find_child("RecentEvents", true, false).get_global_rect().end.y <= game.size.y, "recent feedback visible without scrolling")
 	await capture("02_battle")
 	key(KEY_2); await process_frame
 	check(game.current_view.selected_skill == "strike", "keyboard selects skill")
@@ -84,11 +93,21 @@ func run() -> void:
 	game.current_view.confirm.pressed.emit()
 	await process_frame
 	check(game.manager.battle.snapshot().inventory.ether == 0, "item consumed exactly once")
+	check(not game.last_feedback.is_empty(), "immediate feedback has actual events")
+	await capture("feedback")
 	var safety: int = 0
 	while game.screen != "finished" and safety < 400:
 		safety += 1
 		match game.screen:
-			"battle": auto_command()
+			"battle":
+				if game.manager.snapshot().level == 4: await capture("boss_hud")
+				if game.manager.snapshot().level >= 2 and game.manager.battle.state.actor() == "mage" and not checked_growth_marker:
+					checked_growth_marker = true
+					check("★" in game.current_view.command_buttons[1].text, "changed skill marked on command")
+					game.current_view.select_action("fireball")
+					await capture("growth_skill")
+				if game.last_feedback.any(func(e): return str(e.get("source", "")).begins_with("growth:")): await capture("growth_feedback")
+				auto_command()
 			"battle_result":
 				await capture("05_battle_result")
 				game.current_view.proceed.pressed.emit()
@@ -99,11 +118,27 @@ func run() -> void:
 				var prior = game.manager.snapshot().revision
 				node.pressed.emit(); node.pressed.emit()
 				check(game.manager.snapshot().revision == prior + 1, "reward duplicate input rejected")
+			"growth":
+				var level = game.manager.snapshot().level
+				await capture("growth_lv%d" % level)
+				var prior = game.manager.snapshot().revision
+				var node = game.current_view.choices[1] if level == 2 else game.current_view.choices[0]
+				node.pressed.emit(); node.pressed.emit()
+				check(game.manager.snapshot().revision == prior + 1, "level choice/slot growth applies once")
+				if level == 3: check(game.manager.snapshot().equipment_slots == 3, "third slot unlocks on growth screen")
 			"event":
 				await capture("07_event")
 				check(game.current_view.choices.size() >= 2, "finite event has alternatives")
 				game.current_view.choices[0].pressed.emit()
 			"intermission":
+				if game.manager.snapshot().equipment_slots == 3:
+					await capture("third_slot")
+					var options = game.current_view.find_children("*", "OptionButton", true, false)
+					check(options.size() == 9, "camp renders three owned slots per party member")
+					if not equipped_third and options[2].item_count > 1:
+						options[2].item_selected.emit(1)
+						equipped_third = true
+						check(game.manager.snapshot().loadout.knight[2] != "", "owned reward equipped through third-slot UI")
 				await capture("08_equipment")
 				game.current_view.proceed.pressed.emit()
 		await process_frame
@@ -114,7 +149,7 @@ func run() -> void:
 		check(game.save_run(), "adventure log saved")
 		var saved = JSON.parse_string(FileAccess.get_file_as_string("user://last_run.json"))
 		var expected = JSON.parse_string(JSON.stringify(game.manager.result()))
-		check(saved == expected and saved.instruction_commit == "c2921672a4679ecc9e5c9e439c98278b56960db8", "full history/resources/equipment/seed and instruction SHA exported")
+		check(saved == expected and saved.instruction_commit == "33122df11cb0e04332968c47a8515cef415542c8", "full history/resources/equipment/seed and instruction SHA exported")
 		game.detail.hide()
 	game.current_view.proceed.pressed.emit()
 	await process_frame

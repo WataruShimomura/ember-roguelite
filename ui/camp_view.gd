@@ -10,7 +10,7 @@ func build() -> void:
 	for id in catalog.party_ids():
 		var card = panel(row)
 		card.add_child(label(visuals.unit(id), 22, visuals.color(id)))
-		for slot in range(2):
+		for slot in range(snapshot.equipment_slots):
 			var keys: Array = [snapshot.loadout[id][slot]]
 			if not "" in keys: keys.append("")
 			for gear in snapshot.gear:

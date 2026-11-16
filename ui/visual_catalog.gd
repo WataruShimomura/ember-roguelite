@@ -22,12 +22,38 @@ func color(id: String) -> Color:
 func texture(path: String):
 	return load(path) if not path.is_empty() and ResourceLoader.exists(path) else null
 
+func growth_name(id: String) -> String:
+	return data.growth.get(id, {}).get("name", id)
+
+func feedback(event: Dictionary) -> Dictionary:
+	if event.type == "tp" and event.amount == 0: return {"text": "", "color": Color("82b9ec")}
+	var source = str(event.get("source", ""))
+	var growth = source.begins_with("growth:") or event.get("sources", []).any(func(entry): return str(entry.source).begins_with("growth:"))
+	var absorb = event.get("credit", 0) > 0 and event.type in ["heal", "tp"]
+	var kind = "growth" if growth else ("counter" if event.get("counter", false) else event.type)
+	var text_value = ""
+	match event.type:
+		"damage": text_value = "%s −%d HP" % [unit(event.target), event.amount]
+		"heal": text_value = "%s +%d HP" % [unit(event.target), event.amount]
+		"tp": text_value = "%s TP %+d" % [unit(event.target), event.amount]
+		"growth_trigger", "counter_stance", "remove_status": text_value = unit(event.actor) + " / " + growth_name(source.trim_prefix("growth:"))
+		"status": text_value = "%s 火傷%s" % [unit(event.target), "付与" if event.success else "失敗"]
+	if event.get("counter", false): text_value += " / 反撃"
+	if absorb: text_value += " / 吸収"
+	if growth: text_value += " / 成長"
+	if source == "recovery:round": text_value += " / 自然回復"
+	if source == "recovery:entry": text_value += " / 開始補充"
+	return {"text": text_value, "color": Color(data.feedback.get(kind, "#dce3ef"))}
+
 func describe(calculation: Dictionary) -> String:
 	if calculation.is_empty(): return "予告は無効になりました"
 	var lines: Array[String] = []
 	for effect in calculation.effects:
 		var target = unit(effect.target)
 		match effect.kind:
+			"counter_stance": lines.append("%s 反撃 +%d / 成長" % [target, effect.value])
+			"remove_status": lines.append("%s 火傷を消費 / 成長" % target)
+			"growth_trigger": lines.append("%s 初回効果 / %s" % [target, growth_name(effect.source.trim_prefix("growth:"))])
 			"damage": lines.append("%s −%d HP%s" % [target, effect.amount, " / 反撃" if effect.counter else ""])
 			"heal", "revive": lines.append("%s +%d HP%s" % [target, effect.amount, " / 吸収" if effect.get("credit", 0) > 0 else ""])
 			"tp": lines.append("%s +%d TP / %s" % [target, effect.amount, "吸収" if effect.get("credit", 0) > 0 else "回復"])
@@ -57,6 +83,10 @@ func breakdown(calculation: Dictionary) -> String:
 func event_text(event: Dictionary) -> String:
 	var prefix = "R%02d  " % event.round
 	match event.type:
+		"tp_pool_created": return prefix + "%s 自然回復プール作成 %d" % [unit(event.actor), event.amount]
+		"tp_pool_spent": return prefix + "%s 自然回復プール %d→%d" % [unit(event.actor), event.before, event.after]
+		"tp_pool_discarded": return prefix + "%s プール残%dを戦闘終了で破棄" % [unit(event.actor), event.amount]
+		"growth_trigger", "counter_stance", "remove_status": return prefix + feedback(event).text + " [" + event.source + "]"
 		"action": return prefix + "%s / %s → %s" % [unit(event.actor), skill(event.skill), ", ".join(event.targets.map(func(id): return unit(id)))]
 		"damage": return prefix + "%s −%d HP ← %s / 新規削減%d" % [unit(event.target), event.amount, event.source, event.credit]
 		"heal": return prefix + "%s +%d HP / %s / クレジット%d" % [unit(event.target), event.amount, event.source, event.get("credit", 0)]
@@ -85,6 +115,8 @@ func reward_description(reward: Dictionary) -> String:
 func run_event_text(event: Dictionary) -> String:
 	var prefix = "戦闘%d / " % (event.node + 1)
 	match event.kind:
+		"level": return prefix + "共通Lv%dへ成長" % event.level
+		"growth": return prefix + ("全員の装備%d枠を解放" % event.slots if event.choice == "equipment_slots" else growth_name(event.choice))
 		"reward": return prefix + "報酬: " + reward_name(event.definition)
 		"event": return prefix + "祭壇: " + event.choice
 		"equipment": return prefix + "%s / %s → %s" % [unit(event.actor), equipment(event.before), equipment(event.after)]

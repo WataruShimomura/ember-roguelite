@@ -13,6 +13,10 @@ var offers: Array = []
 var battles: Array = []
 var history: Array = []
 var outcome: String = ""
+var level: int = 1
+var equipment_slots: int = 2
+var upgrades: Array = []
+var growth_options: Array = []
 
 func record(kind: String, payload: Dictionary = {}) -> void:
 	var event = payload.duplicate(true)
@@ -22,4 +26,4 @@ func record(kind: String, payload: Dictionary = {}) -> void:
 	history.append(event)
 
 func snapshot() -> Dictionary:
-	return {"seed": seed_value, "revision": revision, "phase": phase, "node": node, "route": route.duplicate(), "party": party.duplicate(true), "loadout": loadout.duplicate(true), "inventory": inventory.duplicate(true), "gear": gear.duplicate(true), "offers": offers.duplicate(), "battles": battles.duplicate(true), "history": history.duplicate(true), "outcome": outcome}
+	return {"seed": seed_value, "revision": revision, "phase": phase, "node": node, "route": route.duplicate(), "party": party.duplicate(true), "loadout": loadout.duplicate(true), "inventory": inventory.duplicate(true), "gear": gear.duplicate(true), "offers": offers.duplicate(), "battles": battles.duplicate(true), "history": history.duplicate(true), "outcome": outcome, "level": level, "equipment_slots": equipment_slots, "upgrades": upgrades.duplicate(), "growth_options": growth_options.duplicate()}

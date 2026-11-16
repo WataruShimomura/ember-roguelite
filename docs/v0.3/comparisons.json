@@ -1,0 +1,7264 @@
+[
+	{
+		"battles": [
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 6,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 82,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 2,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 6,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 43,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 3,
+					"heal": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 1
+				},
+				"encounter": "crossfire",
+				"entry": 3,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 90,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 5,
+				"normal": 3,
+				"normal_rate": 0.428571428571429,
+				"rounds": 3,
+				"skills": 4,
+				"spent": 5,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 2,
+						"before": 2,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 47,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 52,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 54,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 56,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 1,
+					"heal": 1,
+					"pressure": 2,
+					"strike": 2,
+					"wave": 2
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 46,
+					"knight": 53,
+					"mage": 66
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 7,
+				"normal": 3,
+				"normal_rate": 0.272727272727273,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 10,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 3
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 43,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 52,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 55,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 57,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 61,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 66,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 76,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 84,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 86,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 88,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 92,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"commands": {
+					"attack": 2,
+					"fireball": 3,
+					"heal": 2,
+					"pressure": 1,
+					"strike": 3
+				},
+				"encounter": "final",
+				"entry": 1,
+				"growth_events": {
+					"growth:detonate": 1,
+					"growth:ember_hunt": 3
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 55,
+					"knight": 44,
+					"mage": 42
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 8,
+				"normal": 2,
+				"normal_rate": 0.181818181818182,
+				"rounds": 4,
+				"skills": 9,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 5
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 24,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 27,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 29,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 35,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 40,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 19,
+						"requested": 0,
+						"round": 2,
+						"sequence": 50,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 54,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 56,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 60,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 66,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 79,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 84,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 86,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 88,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 92,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"detonate",
+			"ember_hunt"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 55,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 5
+			},
+			"knight": {
+				"hp": 44,
+				"stats": {
+					"MAX_HP": 90.0,
+					"MAX_TP": 5.0,
+					"POWER": 20.0,
+					"SPEED": 18.0
+				},
+				"tp": 4
+			},
+			"mage": {
+				"hp": 42,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 5
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "burst",
+		"rules": {
+			"enabled": true,
+			"entry": 2.0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "C"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 6,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 82,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 6,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 34,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 39,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 3,
+					"heal": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 1
+				},
+				"encounter": "crossfire",
+				"entry": 4,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 90,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.428571428571429,
+				"rounds": 3,
+				"skills": 4,
+				"spent": 5,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 3,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 2,
+						"before": 1,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 34,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 43,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 1,
+					"heal": 1,
+					"pressure": 2,
+					"strike": 2,
+					"wave": 2
+				},
+				"encounter": "elite_gate",
+				"entry": 2,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 46,
+					"knight": 53,
+					"mage": 66
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.272727272727273,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 10,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 1,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 34,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 39,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 48,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 53,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 58,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 68,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 78,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 1,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 2,
+					"fireball": 3,
+					"heal": 2,
+					"pressure": 1,
+					"strike": 3
+				},
+				"encounter": "final",
+				"entry": 4,
+				"growth_events": {
+					"growth:detonate": 1,
+					"growth:ember_hunt": 3
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 55,
+					"knight": 44,
+					"mage": 42
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 2,
+				"normal_rate": 0.181818181818182,
+				"rounds": 4,
+				"skills": 9,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 0,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 2,
+						"before": 2,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 2,
+						"before": 1,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 24,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 29,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 34,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 44,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 50,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 56,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 69,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 76,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"detonate",
+			"ember_hunt"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 55,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 4
+			},
+			"knight": {
+				"hp": 44,
+				"stats": {
+					"MAX_HP": 90.0,
+					"MAX_TP": 5.0,
+					"POWER": 20.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 42,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 0
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "burst",
+		"rules": {
+			"enabled": true,
+			"entry": 2.0,
+			"pool": 0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "entry_only"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 82,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 3,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 6,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 2,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 35,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 40,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 45,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 4,
+					"knight": 2,
+					"mage": 0
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 1,
+					"pressure": 1,
+					"strike": 1
+				},
+				"encounter": "crossfire",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 75,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 3,
+				"normal": 3,
+				"normal_rate": 0.5,
+				"rounds": 2,
+				"skills": 3,
+				"spent": 3,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 4,
+					"knight": 2,
+					"mage": 0
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 29,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 43,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 10,
+						"requested": 0,
+						"round": 2,
+						"sequence": 53,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 4,
+					"fireball": 2,
+					"pressure": 1,
+					"strike": 3,
+					"wave": 1
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 73,
+					"knight": 80,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 6,
+				"normal": 4,
+				"normal_rate": 0.363636363636364,
+				"rounds": 4,
+				"skills": 7,
+				"spent": 8,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 18,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 28,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 31,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 33,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 43,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 53,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 58,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 60,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 64,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 70,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 5,
+						"requested": 0,
+						"round": 3,
+						"sequence": 79,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 85,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 87,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 91,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 2,
+					"fireball": 3,
+					"heal": 1,
+					"pressure": 1,
+					"strike": 3
+				},
+				"encounter": "final",
+				"entry": 0,
+				"growth_events": {
+					"growth:detonate": 1,
+					"growth:ember_hunt": 3
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 52,
+					"knight": 63,
+					"mage": 42
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 7,
+				"normal": 2,
+				"normal_rate": 0.2,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 8,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 11,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 27,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 29,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 33,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 38,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 19,
+						"requested": 0,
+						"round": 2,
+						"sequence": 48,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 52,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 54,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 58,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 64,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 77,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 82,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 84,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 86,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 90,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"detonate",
+			"ember_hunt"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 52,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 5
+			},
+			"knight": {
+				"hp": 63,
+				"stats": {
+					"MAX_HP": 90.0,
+					"MAX_TP": 5.0,
+					"POWER": 20.0,
+					"SPEED": 18.0
+				},
+				"tp": 2
+			},
+			"mage": {
+				"hp": 42,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 2
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "burst",
+		"rules": {
+			"enabled": true,
+			"entry": 0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "pool_only"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 1
+				},
+				"encounter": "embers",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 82,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.5,
+				"rounds": 2,
+				"skills": 3,
+				"spent": 4,
+				"tp_end": {
+					"cleric": 3,
+					"knight": 1,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 8,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 15,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 25,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 31,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 9,
+						"requested": 0,
+						"round": 2,
+						"sequence": 44,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 1,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 5,
+					"fireball": 1,
+					"pressure": 1
+				},
+				"encounter": "crossfire",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 75,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 5,
+				"normal_rate": 0.714285714285714,
+				"rounds": 3,
+				"skills": 2,
+				"spent": 2,
+				"tp_end": {
+					"cleric": 3,
+					"knight": 0,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 1,
+					"mage": 1
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 8,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 15,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 43,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 10,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 1
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 73,
+					"knight": 80,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 10,
+				"normal_rate": 0.769230769230769,
+				"rounds": 5,
+				"skills": 3,
+				"spent": 4,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 0,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 2
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 8,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 15,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 25,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 31,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 42,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 5,
+						"requested": 0,
+						"round": 3,
+						"sequence": 56,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 4,
+						"sequence": 70,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 0,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 11,
+					"fireball": 1,
+					"heal": 3,
+					"strike": 1
+				},
+				"encounter": "final",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 52,
+					"knight": 66,
+					"mage": 63
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 11,
+				"normal_rate": 0.6875,
+				"rounds": 6,
+				"skills": 5,
+				"spent": 5,
+				"tp_end": {
+					"cleric": 2,
+					"knight": 0,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 1
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 8,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 13,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 1,
+						"sequence": 23,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 11,
+						"requested": 0,
+						"round": 2,
+						"sequence": 35,
+						"source": "equipment:crest:0",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 47,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 59,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 5,
+						"sequence": 71,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"detonate",
+			"ember_hunt"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 52,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 2
+			},
+			"knight": {
+				"hp": 66,
+				"stats": {
+					"MAX_HP": 90.0,
+					"MAX_TP": 5.0,
+					"POWER": 20.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 63,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 0
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "burst",
+		"rules": {
+			"enabled": false,
+			"entry": 2.0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "off"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 6,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 2,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 21,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 44,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 46,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 51,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 56,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 7,
+						"requested": 0,
+						"round": 2,
+						"sequence": 62,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 15,
+						"requested": 0,
+						"round": 2,
+						"sequence": 68,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 2,
+					"pressure": 1,
+					"wave": 1
+				},
+				"encounter": "crossfire",
+				"entry": 4,
+				"growth_events": {
+					"growth:riposte": 1
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 2,
+				"normal": 2,
+				"normal_rate": 0.5,
+				"rounds": 2,
+				"skills": 2,
+				"spent": 4,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 2,
+						"before": 2,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 27,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 52,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 54,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 2,
+					"strike": 1,
+					"wave": 3
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+					"growth:riposte": 2
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 75,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 4,
+				"normal": 3,
+				"normal_rate": 0.333333333333333,
+				"rounds": 3,
+				"skills": 6,
+				"spent": 13,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 27,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 51,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 53,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 58,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 63,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 68,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 73,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 80,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 82,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 86,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 3,
+						"sequence": 94,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 11,
+						"requested": 0,
+						"round": 3,
+						"sequence": 100,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 9,
+						"requested": 0,
+						"round": 3,
+						"sequence": 105,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 3,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 3,
+					"heal": 1,
+					"pressure": 3,
+					"strike": 1
+				},
+				"encounter": "final",
+				"entry": 3,
+				"growth_events": {
+					"growth:counter_order": 2,
+					"growth:riposte": 3
+				},
+				"growth_tp": 1,
+				"hp_end": {
+					"cleric": 61,
+					"knight": 94,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 6,
+				"normal": 3,
+				"normal_rate": 0.272727272727273,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 12,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 5
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 22,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 1,
+						"sequence": 32,
+						"source": "growth:counter_order",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 39,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 44,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 49,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 22,
+						"requested": 1,
+						"round": 2,
+						"sequence": 54,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 4,
+						"requested": 0,
+						"round": 2,
+						"sequence": 64,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 66,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 68,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 72,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": -2,
+						"before": 5,
+						"credit": 0,
+						"requested": -2,
+						"round": 3,
+						"sequence": 80,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 22,
+						"requested": 1,
+						"round": 3,
+						"sequence": 85,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 3,
+						"sequence": 103,
+						"source": "growth:counter_order",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 106,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 4,
+						"requested": 0,
+						"round": 3,
+						"sequence": 113,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 115,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 117,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 119,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 124,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 17,
+						"requested": 0,
+						"round": 4,
+						"sequence": 136,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"riposte",
+			"counter_order"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 61,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 5
+			},
+			"knight": {
+				"hp": 94,
+				"stats": {
+					"MAX_HP": 100.0,
+					"MAX_TP": 5.0,
+					"POWER": 15.0,
+					"SPEED": 18.0
+				},
+				"tp": 3
+			},
+			"mage": {
+				"hp": 72,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 5
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "sustain",
+		"rules": {
+			"enabled": true,
+			"entry": 2.0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "C"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 6,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 2,
+						"before": 3,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 21,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 47,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 52,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 7,
+						"requested": 0,
+						"round": 2,
+						"sequence": 58,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 15,
+						"requested": 0,
+						"round": 2,
+						"sequence": 64,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 2,
+					"pressure": 1,
+					"wave": 1
+				},
+				"encounter": "crossfire",
+				"entry": 4,
+				"growth_events": {
+					"growth:riposte": 1
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 2,
+				"normal_rate": 0.5,
+				"rounds": 2,
+				"skills": 2,
+				"spent": 4,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 3,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 2,
+						"before": 2,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 2,
+						"before": 1,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 27,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 4
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 2,
+					"strike": 1,
+					"wave": 3
+				},
+				"encounter": "elite_gate",
+				"entry": 1,
+				"growth_events": {
+					"growth:riposte": 2
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 75,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.333333333333333,
+				"rounds": 3,
+				"skills": 6,
+				"spent": 13,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 5,
+					"mage": 5
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -3,
+						"before": 5,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 27,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 54,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 59,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 64,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 69,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 78,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 3,
+						"sequence": 86,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 11,
+						"requested": 0,
+						"round": 3,
+						"sequence": 92,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 9,
+						"requested": 0,
+						"round": 3,
+						"sequence": 97,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 1
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 3,
+					"heal": 1,
+					"pressure": 3,
+					"strike": 1
+				},
+				"encounter": "final",
+				"entry": 4,
+				"growth_events": {
+					"growth:counter_order": 2,
+					"growth:riposte": 3
+				},
+				"growth_tp": 1,
+				"hp_end": {
+					"cleric": 61,
+					"knight": 94,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.272727272727273,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 12,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 0,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 4,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 2,
+						"before": 2,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 2,
+						"before": 1,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 2,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": -1,
+						"before": 4,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 22,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 1,
+						"sequence": 32,
+						"source": "growth:counter_order",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 42,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 47,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 2,
+						"sequence": 52,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 4,
+						"requested": 0,
+						"round": 2,
+						"sequence": 62,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 66,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 17,
+						"requested": 1,
+						"round": 3,
+						"sequence": 78,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 3,
+						"sequence": 95,
+						"source": "growth:counter_order",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 98,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 4,
+						"requested": 0,
+						"round": 3,
+						"sequence": 105,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 111,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 4,
+						"sequence": 119,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 4,
+						"sequence": 124,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"riposte",
+			"counter_order"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 61,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 4
+			},
+			"knight": {
+				"hp": 94,
+				"stats": {
+					"MAX_HP": 100.0,
+					"MAX_TP": 5.0,
+					"POWER": 15.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 72,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 1
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "sustain",
+		"rules": {
+			"enabled": true,
+			"entry": 2.0,
+			"pool": 0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "entry_only"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 1,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 2
+				},
+				"encounter": "embers",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 3,
+				"normal": 1,
+				"normal_rate": 0.2,
+				"rounds": 2,
+				"skills": 4,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 1,
+					"mage": 0
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 3,
+						"amount": 0,
+						"before": 3,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 16,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 21,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 26,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 44,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 46,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 48,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 53,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 58,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 7,
+						"requested": 0,
+						"round": 2,
+						"sequence": 64,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 15,
+						"requested": 0,
+						"round": 2,
+						"sequence": 70,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 1,
+				"carried_tp": {
+					"cleric": 4,
+					"knight": 1,
+					"mage": 0
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 2
+				},
+				"encounter": "crossfire",
+				"entry": 0,
+				"growth_events": {
+					"growth:riposte": 2
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 3,
+				"normal": 3,
+				"normal_rate": 0.6,
+				"rounds": 2,
+				"skills": 2,
+				"spent": 2,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 0,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 4,
+					"knight": 1,
+					"mage": 0
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": 0,
+						"before": 0,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 17,
+						"requested": 1,
+						"round": 1,
+						"sequence": 21,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 46,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 48,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 50,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 55,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 15,
+						"requested": 0,
+						"round": 2,
+						"sequence": 68,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 4
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 2,
+					"strike": 1,
+					"wave": 3
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+					"growth:riposte": 2
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 75,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 4,
+				"normal": 3,
+				"normal_rate": 0.333333333333333,
+				"rounds": 3,
+				"skills": 6,
+				"spent": 13,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 0,
+					"mage": 1
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 4
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 0,
+						"before": 4,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 27,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 51,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 53,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 58,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 63,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 68,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 73,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 80,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 4,
+						"amount": 1,
+						"before": 3,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 82,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 86,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 3,
+						"sequence": 94,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 11,
+						"requested": 0,
+						"round": 3,
+						"sequence": 100,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 9,
+						"requested": 0,
+						"round": 3,
+						"sequence": 105,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 3,
+					"fireball": 3,
+					"heal": 1,
+					"pressure": 3,
+					"strike": 1
+				},
+				"encounter": "final",
+				"entry": 0,
+				"growth_events": {
+					"growth:counter_order": 2,
+					"growth:riposte": 3
+				},
+				"growth_tp": 1,
+				"hp_end": {
+					"cleric": 61,
+					"knight": 94,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 7,
+				"normal": 3,
+				"normal_rate": 0.272727272727273,
+				"rounds": 4,
+				"skills": 8,
+				"spent": 12,
+				"tp_end": {
+					"cleric": 5,
+					"knight": 0,
+					"mage": 3
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 2
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 1,
+						"source": "recovery:entry",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 3,
+						"source": "recovery:entry",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 1,
+						"sequence": 5,
+						"source": "recovery:entry",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 9,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 17,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 1,
+						"sequence": 22,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 1,
+						"sequence": 32,
+						"source": "growth:counter_order",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 39,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 2,
+						"sequence": 41,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 46,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 51,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 2,
+						"sequence": 56,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 4,
+						"requested": 0,
+						"round": 2,
+						"sequence": 66,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 68,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 3,
+						"sequence": 70,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 74,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 3,
+						"sequence": 82,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 3,
+						"sequence": 87,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 3,
+						"sequence": 105,
+						"source": "growth:counter_order",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 108,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 4,
+						"requested": 0,
+						"round": 3,
+						"sequence": 115,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 117,
+						"source": "recovery:round",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 119,
+						"source": "recovery:round",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 1,
+						"before": 4,
+						"credit": 0,
+						"requested": 1,
+						"round": 4,
+						"sequence": 121,
+						"source": "recovery:round",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 4,
+						"sequence": 126,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 17,
+						"requested": 1,
+						"round": 4,
+						"sequence": 138,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"riposte",
+			"counter_order"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 61,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 5
+			},
+			"knight": {
+				"hp": 94,
+				"stats": {
+					"MAX_HP": 100.0,
+					"MAX_TP": 5.0,
+					"POWER": 15.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 72,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 3
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "sustain",
+		"rules": {
+			"enabled": true,
+			"entry": 0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "pool_only"
+	},
+	{
+		"battles": [
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"commands": {
+					"attack": 3,
+					"pressure": 1,
+					"strike": 1,
+					"wave": 1
+				},
+				"encounter": "embers",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 3,
+				"normal_rate": 0.5,
+				"rounds": 2,
+				"skills": 3,
+				"spent": 6,
+				"tp_end": {
+					"cleric": 3,
+					"knight": 0,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 3,
+					"mage": 3
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 2,
+						"amount": -1,
+						"before": 3,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 6,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 13,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 18,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 23,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 44,
+						"source": "skill:strike",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 15,
+						"requested": 0,
+						"round": 2,
+						"sequence": 54,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 2,
+				"carried_tp": {
+					"cleric": 3,
+					"knight": 0,
+					"mage": 2
+				},
+				"commands": {
+					"attack": 5,
+					"fireball": 1
+				},
+				"encounter": "crossfire",
+				"entry": 0,
+				"growth_events": {
+
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 82,
+					"knight": 94,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 5,
+				"normal_rate": 0.833333333333333,
+				"rounds": 2,
+				"skills": 1,
+				"spent": 2,
+				"tp_end": {
+					"cleric": 3,
+					"knight": 0,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 3,
+					"knight": 0,
+					"mage": 2
+				},
+				"tp_timeline": [
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 10,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 1,
+						"sequence": 15,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 4,
+						"requested": 0,
+						"round": 1,
+						"sequence": 37,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 17,
+						"requested": 1,
+						"round": 2,
+						"sequence": 49,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 2,
+						"requested": 0,
+						"round": 2,
+						"sequence": 61,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 5,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 4
+				},
+				"commands": {
+					"attack": 5,
+					"heal": 1,
+					"pressure": 2,
+					"wave": 2
+				},
+				"encounter": "elite_gate",
+				"entry": 0,
+				"growth_events": {
+					"growth:riposte": 2
+				},
+				"growth_tp": 0,
+				"hp_end": {
+					"cleric": 75,
+					"knight": 100,
+					"mage": 72
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 5,
+				"normal_rate": 0.5,
+				"rounds": 4,
+				"skills": 5,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 0,
+					"mage": 3
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 2,
+					"mage": 4
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": -1,
+						"before": 2,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 6,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -3,
+						"before": 4,
+						"credit": 0,
+						"requested": -3,
+						"round": 1,
+						"sequence": 14,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 19,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 19,
+						"requested": 1,
+						"round": 1,
+						"sequence": 24,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 51,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -3,
+						"before": 3,
+						"credit": 0,
+						"requested": -3,
+						"round": 2,
+						"sequence": 59,
+						"source": "skill:wave",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 64,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 19,
+						"requested": 1,
+						"round": 2,
+						"sequence": 69,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 17,
+						"requested": 1,
+						"round": 3,
+						"sequence": 88,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 98,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					}
+				]
+			},
+			{
+				"absorb": 4,
+				"carried_tp": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 4
+				},
+				"commands": {
+					"attack": 6,
+					"fireball": 3,
+					"heal": 1,
+					"pressure": 2
+				},
+				"encounter": "final",
+				"entry": 0,
+				"growth_events": {
+					"growth:counter_order": 2,
+					"growth:riposte": 2
+				},
+				"growth_tp": 1,
+				"hp_end": {
+					"cleric": 58,
+					"knight": 70,
+					"mage": 70
+				},
+				"item_tp": 0,
+				"items": 0,
+				"natural": 0,
+				"normal": 6,
+				"normal_rate": 0.5,
+				"rounds": 4,
+				"skills": 6,
+				"spent": 9,
+				"tp_end": {
+					"cleric": 4,
+					"knight": 0,
+					"mage": 2
+				},
+				"tp_start": {
+					"cleric": 5,
+					"knight": 1,
+					"mage": 4
+				},
+				"tp_timeline": [
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 1,
+						"sequence": 6,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": -2,
+						"before": 4,
+						"credit": 0,
+						"requested": -2,
+						"round": 1,
+						"sequence": 14,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 3,
+						"amount": 1,
+						"before": 2,
+						"credit": 22,
+						"requested": 1,
+						"round": 1,
+						"sequence": 19,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 0,
+						"requested": 1,
+						"round": 1,
+						"sequence": 29,
+						"source": "growth:counter_order",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "knight",
+						"after": 0,
+						"amount": -1,
+						"before": 1,
+						"credit": 0,
+						"requested": -1,
+						"round": 2,
+						"sequence": 39,
+						"source": "skill:pressure",
+						"target": "knight",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": -2,
+						"before": 3,
+						"credit": 0,
+						"requested": -2,
+						"round": 2,
+						"sequence": 47,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 22,
+						"requested": 1,
+						"round": 2,
+						"sequence": 52,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 4,
+						"requested": 0,
+						"round": 2,
+						"sequence": 63,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 0,
+						"amount": -2,
+						"before": 2,
+						"credit": 0,
+						"requested": -2,
+						"round": 3,
+						"sequence": 72,
+						"source": "skill:fireball",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 1,
+						"before": 0,
+						"credit": 22,
+						"requested": 1,
+						"round": 3,
+						"sequence": 77,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 5,
+						"amount": 0,
+						"before": 5,
+						"credit": 0,
+						"requested": 0,
+						"round": 3,
+						"sequence": 92,
+						"source": "growth:counter_order",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "cleric",
+						"after": 4,
+						"amount": -1,
+						"before": 5,
+						"credit": 0,
+						"requested": -1,
+						"round": 3,
+						"sequence": 94,
+						"source": "skill:heal",
+						"target": "cleric",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 1,
+						"amount": 0,
+						"before": 1,
+						"credit": 4,
+						"requested": 0,
+						"round": 3,
+						"sequence": 101,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 1,
+						"before": 1,
+						"credit": 17,
+						"requested": 1,
+						"round": 4,
+						"sequence": 113,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					},
+					{
+						"actor": "mage",
+						"after": 2,
+						"amount": 0,
+						"before": 2,
+						"credit": 4,
+						"requested": 0,
+						"round": 4,
+						"sequence": 128,
+						"source": "equipment:crest:0",
+						"target": "mage",
+						"type": "tp"
+					}
+				]
+			}
+		],
+		"choices": [
+			"riposte",
+			"counter_order"
+		],
+		"final_party": {
+			"cleric": {
+				"hp": 58,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 4
+			},
+			"knight": {
+				"hp": 70,
+				"stats": {
+					"MAX_HP": 100.0,
+					"MAX_TP": 5.0,
+					"POWER": 15.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 70,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 2
+			}
+		},
+		"inventory": {
+			"ether": 1.0,
+			"potion": 2.0,
+			"revive": 1.0
+		},
+		"outcome": "clear",
+		"route": "sustain",
+		"rules": {
+			"enabled": false,
+			"entry": 2.0,
+			"pool": 4.0,
+			"round": 1.0
+		},
+		"seed": 42,
+		"tp_mode": "off"
+	}
+]

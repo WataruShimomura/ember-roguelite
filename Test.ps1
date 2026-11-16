@@ -7,6 +7,12 @@ try {
     & $Godot --headless --path . --log-file $battleLog --script tests/test_battle.gd
     if ($LASTEXITCODE -ne 0) { throw 'Battle tests failed.' }
     if (Select-String -LiteralPath $battleLog -Pattern 'SCRIPT ERROR|FAIL:' -Quiet) { throw 'Battle script error.' }
+    foreach ($suite in @('test_growth', 'compare_growth')) {
+        $suiteLog = Join-Path $PSScriptRoot "tests\artifacts\$suite.log"
+        & $Godot --headless --path . --log-file $suiteLog --script "tests/$suite.gd"
+        if ($LASTEXITCODE -ne 0) { throw "$suite failed." }
+        if (Select-String -LiteralPath $suiteLog -Pattern 'SCRIPT ERROR|FAIL:' -Quiet) { throw "$suite script error." }
+    }
     $uiLog = Join-Path $PSScriptRoot 'tests\artifacts\ui.log'
     $uiArgs = @('--path', '.', '--log-file', $uiLog, '--script', 'tests/smoke_ui.gd')
     if (-not $Render) { $uiArgs = @('--headless') + $uiArgs }
