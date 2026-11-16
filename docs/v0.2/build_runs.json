@@ -1,0 +1,765 @@
+[
+	{
+		"battles": [
+			{
+				"actions": [
+					"strike",
+					"fireball",
+					"attack",
+					"attack",
+					"strike",
+					"fireball",
+					"attack",
+					"guard",
+					"strike"
+				],
+				"encounter": "embers",
+				"end": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 81,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 0
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 1
+					}
+				},
+				"rounds": 3,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 90,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 3
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 3
+					}
+				}
+			},
+			{
+				"actions": [
+					"strike",
+					"fireball",
+					"attack",
+					"attack",
+					"attack",
+					"fireball",
+					"attack"
+				],
+				"encounter": "crossfire",
+				"end": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 83,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 0
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 0
+					}
+				},
+				"rounds": 2,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 90,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 1
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 2
+					}
+				}
+			},
+			{
+				"actions": [
+					"strike",
+					"fireball",
+					"attack",
+					"attack",
+					"attack",
+					"strike",
+					"fireball",
+					"charge",
+					"heal",
+					"guard",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"guard",
+					"attack",
+					"attack",
+					"attack"
+				],
+				"encounter": "elite_gate",
+				"end": {
+					"cleric": {
+						"hp": 73,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 87,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 0
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 0
+					}
+				},
+				"rounds": 5,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 5
+					},
+					"knight": {
+						"hp": 90,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 2
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 2
+					}
+				}
+			},
+			{
+				"actions": [
+					"strike",
+					"fireball",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"charge",
+					"attack",
+					"attack",
+					"attack",
+					"nova",
+					"heal",
+					"attack",
+					"attack",
+					"attack",
+					"heal",
+					"attack",
+					"attack",
+					"charge",
+					"heal",
+					"attack"
+				],
+				"encounter": "final",
+				"end": {
+					"cleric": {
+						"hp": 52,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 2
+					},
+					"knight": {
+						"hp": 66,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 0
+					},
+					"mage": {
+						"hp": 63,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 0
+					}
+				},
+				"rounds": 6,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 5
+					},
+					"knight": {
+						"hp": 90,
+						"stats": {
+							"MAX_HP": 90.0,
+							"MAX_TP": 5.0,
+							"POWER": 20.0,
+							"SPEED": 18.0
+						},
+						"tp": 1
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 1
+					}
+				}
+			}
+		],
+		"build": "burst",
+		"outcome": "clear",
+		"party": {
+			"cleric": {
+				"hp": 52,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 2
+			},
+			"knight": {
+				"hp": 66,
+				"stats": {
+					"MAX_HP": 90.0,
+					"MAX_TP": 5.0,
+					"POWER": 20.0,
+					"SPEED": 18.0
+				},
+				"tp": 0
+			},
+			"mage": {
+				"hp": 63,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 0
+			}
+		}
+	},
+	{
+		"battles": [
+			{
+				"actions": [
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"guard",
+					"attack",
+					"attack",
+					"attack",
+					"attack"
+				],
+				"encounter": "embers",
+				"end": {
+					"cleric": {
+						"hp": 75,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 94,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 3
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				},
+				"rounds": 3,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 100,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 3
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 3
+					}
+				}
+			},
+			{
+				"actions": [
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"mend",
+					"attack",
+					"attack"
+				],
+				"encounter": "crossfire",
+				"end": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 94,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 4
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				},
+				"rounds": 3,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 100,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 4
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				}
+			},
+			{
+				"actions": [
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"charge",
+					"attack",
+					"guard",
+					"pressure",
+					"attack",
+					"nova",
+					"heal",
+					"attack",
+					"attack",
+					"attack",
+					"heal",
+					"guard",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack"
+				],
+				"encounter": "elite_gate",
+				"end": {
+					"cleric": {
+						"hp": 77,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 94,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 4
+					},
+					"mage": {
+						"hp": 65,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				},
+				"rounds": 6,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 5
+					},
+					"knight": {
+						"hp": 100,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 5
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				}
+			},
+			{
+				"actions": [
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"charge",
+					"attack",
+					"pressure",
+					"attack",
+					"nova",
+					"heal",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"attack",
+					"charge",
+					"attack"
+				],
+				"encounter": "final",
+				"end": {
+					"cleric": {
+						"hp": 61,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 3
+					},
+					"knight": {
+						"hp": 85,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 4
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				},
+				"rounds": 5,
+				"start": {
+					"cleric": {
+						"hp": 82,
+						"stats": {
+							"MAX_HP": 82.0,
+							"MAX_TP": 5.0,
+							"POWER": 11.0,
+							"SPEED": 10.0
+						},
+						"tp": 4
+					},
+					"knight": {
+						"hp": 100,
+						"stats": {
+							"MAX_HP": 100.0,
+							"MAX_TP": 5.0,
+							"POWER": 15.0,
+							"SPEED": 18.0
+						},
+						"tp": 5
+					},
+					"mage": {
+						"hp": 72,
+						"stats": {
+							"MAX_HP": 72.0,
+							"MAX_TP": 5.0,
+							"POWER": 17.0,
+							"SPEED": 15.0
+						},
+						"tp": 5
+					}
+				}
+			}
+		],
+		"build": "sustain",
+		"outcome": "clear",
+		"party": {
+			"cleric": {
+				"hp": 61,
+				"stats": {
+					"MAX_HP": 82.0,
+					"MAX_TP": 5.0,
+					"POWER": 11.0,
+					"SPEED": 10.0
+				},
+				"tp": 3
+			},
+			"knight": {
+				"hp": 85,
+				"stats": {
+					"MAX_HP": 100.0,
+					"MAX_TP": 5.0,
+					"POWER": 15.0,
+					"SPEED": 18.0
+				},
+				"tp": 4
+			},
+			"mage": {
+				"hp": 72,
+				"stats": {
+					"MAX_HP": 72.0,
+					"MAX_TP": 5.0,
+					"POWER": 17.0,
+					"SPEED": 15.0
+				},
+				"tp": 5
+			}
+		}
+	}
+]

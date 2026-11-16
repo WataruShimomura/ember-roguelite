@@ -1,36 +1,606 @@
 {
-  "stats": ["MAX_HP", "POWER", "SPEED"],
-  "rules": {"initial_tp": 2, "max_tp": 5, "guard_multiplier": 0.5},
+  "stats": [
+    "MAX_HP",
+    "POWER",
+    "SPEED",
+    "MAX_TP"
+  ],
+  "rules": {
+    "guard_multiplier": 0.5,
+    "inventory_slots": 3,
+    "item_stack": 3
+  },
   "units": {
-    "knight": {"team": "ally", "stats": {"MAX_HP": 100, "POWER": 15, "SPEED": 18}, "skills": ["strike", "pressure"]},
-    "mage": {"team": "ally", "stats": {"MAX_HP": 72, "POWER": 17, "SPEED": 15}, "skills": ["fireball", "wave"]},
-    "cleric": {"team": "ally", "stats": {"MAX_HP": 82, "POWER": 11, "SPEED": 10}, "skills": ["heal", "inspire"]},
-    "warlock": {"team": "enemy", "stats": {"MAX_HP": 65, "POWER": 12, "SPEED": 13}, "skills": [], "policy": "caster"},
-    "sentinel": {"team": "enemy", "stats": {"MAX_HP": 110, "POWER": 9, "SPEED": 7}, "skills": [], "policy": "shield"}
+    "knight": {
+      "team": "ally",
+      "stats": {
+        "MAX_HP": 100,
+        "POWER": 15,
+        "SPEED": 18,
+        "MAX_TP": 5
+      },
+      "skills": [
+        "strike",
+        "pressure"
+      ],
+      "initial_tp": 3
+    },
+    "mage": {
+      "team": "ally",
+      "stats": {
+        "MAX_HP": 72,
+        "POWER": 17,
+        "SPEED": 15,
+        "MAX_TP": 5
+      },
+      "skills": [
+        "fireball",
+        "wave"
+      ],
+      "initial_tp": 3
+    },
+    "cleric": {
+      "team": "ally",
+      "stats": {
+        "MAX_HP": 82,
+        "POWER": 11,
+        "SPEED": 10,
+        "MAX_TP": 5
+      },
+      "skills": [
+        "heal",
+        "inspire"
+      ],
+      "initial_tp": 3
+    },
+    "warlock": {
+      "team": "enemy",
+      "stats": {
+        "MAX_HP": 50,
+        "POWER": 12,
+        "SPEED": 13,
+        "MAX_TP": 0
+      },
+      "skills": [],
+      "policy": "caster",
+      "initial_tp": 0
+    },
+    "sentinel": {
+      "team": "enemy",
+      "stats": {
+        "MAX_HP": 75,
+        "POWER": 9,
+        "SPEED": 7,
+        "MAX_TP": 0
+      },
+      "skills": [],
+      "policy": "shield",
+      "initial_tp": 0
+    },
+    "mender": {
+      "team": "enemy",
+      "stats": {
+        "MAX_HP": 60,
+        "POWER": 7,
+        "SPEED": 9,
+        "MAX_TP": 0
+      },
+      "skills": [],
+      "policy": "mender"
+    },
+    "elite": {
+      "team": "enemy",
+      "stats": {
+        "MAX_HP": 145,
+        "POWER": 15,
+        "SPEED": 14,
+        "MAX_TP": 0
+      },
+      "skills": [],
+      "policy": "caster"
+    },
+    "boss": {
+      "team": "enemy",
+      "stats": {
+        "MAX_HP": 230,
+        "POWER": 18,
+        "SPEED": 12,
+        "MAX_TP": 0
+      },
+      "skills": [],
+      "policy": "caster"
+    }
   },
   "skills": {
-    "attack": {"cost": 0, "target": "enemy", "tp_gain": 1, "effects": [{"kind": "damage", "base": 0}]},
-    "guard": {"cost": 0, "target": "self", "effects": [{"kind": "guard"}]},
-    "strike": {"cost": 2, "target": "enemy", "effects": [{"kind": "damage", "base": 8}]},
-    "pressure": {"cost": 1, "target": "enemy", "effects": [{"kind": "damage", "base": 2}, {"kind": "modifier", "stat": "POWER", "value": -3}]},
-    "fireball": {"cost": 2, "target": "enemy", "effects": [{"kind": "damage", "base": 5}, {"kind": "status", "status": "burn", "chance": 0.6}]},
-    "wave": {"cost": 3, "target": "all_enemies", "effects": [{"kind": "damage", "base": 2}]},
-    "heal": {"cost": 2, "target": "ally", "effects": [{"kind": "heal", "base": 10}]},
-    "inspire": {"cost": 3, "target": "all_allies", "effects": [{"kind": "modifier", "stat": "POWER", "value": 2}]},
-    "charge": {"cost": 0, "target": "self", "effects": [{"kind": "charge"}]},
-    "nova": {"cost": 0, "target": "all_enemies", "effects": [{"kind": "damage", "base": 12}]}
+    "attack": {
+      "cost": 0,
+      "target": "enemy",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 0
+        }
+      ]
+    },
+    "guard": {
+      "cost": 0,
+      "target": "self",
+      "effects": [
+        {
+          "kind": "guard"
+        }
+      ],
+      "enemy_only": true
+    },
+    "strike": {
+      "cost": 2,
+      "target": "enemy",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 8
+        }
+      ]
+    },
+    "pressure": {
+      "cost": 1,
+      "target": "enemy",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 2
+        },
+        {
+          "kind": "modifier",
+          "stat": "POWER",
+          "value": -3
+        },
+        {
+          "kind": "guard",
+          "recipient": "self"
+        }
+      ]
+    },
+    "fireball": {
+      "cost": 2,
+      "target": "enemy",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 5
+        },
+        {
+          "kind": "status",
+          "status": "burn",
+          "chance": 0.6
+        }
+      ]
+    },
+    "wave": {
+      "cost": 3,
+      "target": "all_enemies",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 2
+        }
+      ]
+    },
+    "heal": {
+      "cost": 2,
+      "target": "ally",
+      "effects": [
+        {
+          "kind": "heal",
+          "base": 10
+        }
+      ]
+    },
+    "inspire": {
+      "cost": 3,
+      "target": "all_allies",
+      "effects": [
+        {
+          "kind": "modifier",
+          "stat": "POWER",
+          "value": 2
+        }
+      ]
+    },
+    "charge": {
+      "cost": 0,
+      "target": "self",
+      "effects": [
+        {
+          "kind": "charge"
+        }
+      ]
+    },
+    "nova": {
+      "cost": 0,
+      "target": "all_enemies",
+      "effects": [
+        {
+          "kind": "damage",
+          "base": 12
+        }
+      ],
+      "consumes_charge": true
+    },
+    "mend": {
+      "cost": 0,
+      "target": "self",
+      "effects": [
+        {
+          "kind": "heal",
+          "flat": true,
+          "base": 14
+        }
+      ]
+    },
+    "item_potion": {
+      "cost": 0,
+      "target": "ally",
+      "effects": [
+        {
+          "kind": "heal",
+          "flat": true,
+          "base": 35
+        }
+      ]
+    },
+    "item_ether": {
+      "cost": 0,
+      "target": "ally",
+      "effects": [
+        {
+          "kind": "tp",
+          "base": 3
+        }
+      ]
+    },
+    "item_revive": {
+      "cost": 0,
+      "target": "fallen_ally",
+      "effects": [
+        {
+          "kind": "revive",
+          "base": 25
+        }
+      ]
+    }
   },
   "equipment": {
-    "ring": {"effects": [{"kind": "stat", "stat": "POWER", "value": 3}]},
-    "boots": {"effects": [{"kind": "stat", "stat": "SPEED", "value": 2}]},
-    "amulet": {"effects": [{"kind": "stat", "stat": "MAX_HP", "value": 12}]},
-    "crest": {"effects": [{"kind": "tp_gain", "value": 1}]},
-    "ember": {"effects": [{"kind": "status_chance", "status": "burn", "value": 0.15}]},
-    "stone": {"effects": [{"kind": "guard_multiplier", "value": 0.35}]}
+    "ring": {
+      "effects": [
+        {
+          "kind": "stat",
+          "stat": "POWER",
+          "value": 3
+        }
+      ]
+    },
+    "boots": {
+      "effects": [
+        {
+          "kind": "stat",
+          "stat": "SPEED",
+          "value": 2
+        }
+      ]
+    },
+    "amulet": {
+      "effects": [
+        {
+          "kind": "stat",
+          "stat": "MAX_HP",
+          "value": 12
+        }
+      ]
+    },
+    "crest": {
+      "effects": [
+        {
+          "kind": "siphon_tp",
+          "value": 0.06
+        }
+      ]
+    },
+    "ember": {
+      "effects": [
+        {
+          "kind": "status_chance",
+          "status": "burn",
+          "value": 0.15
+        }
+      ]
+    },
+    "stone": {
+      "effects": [
+        {
+          "kind": "damage_multiplier",
+          "value": 0.8
+        },
+        {
+          "kind": "counter",
+          "value": 7
+        }
+      ]
+    },
+    "chalice": {
+      "effects": [
+        {
+          "kind": "siphon_hp",
+          "value": 0.3
+        }
+      ]
+    },
+    "reservoir": {
+      "effects": [
+        {
+          "kind": "stat",
+          "stat": "MAX_TP",
+          "value": 3
+        }
+      ]
+    },
+    "focus": {
+      "effects": [
+        {
+          "kind": "cost_reduction",
+          "value": 1
+        }
+      ]
+    },
+    "edge": {
+      "effects": [
+        {
+          "kind": "stat",
+          "stat": "POWER",
+          "value": 5
+        },
+        {
+          "kind": "stat",
+          "stat": "MAX_HP",
+          "value": -10
+        }
+      ]
+    }
   },
-  "statuses": {"burn": {"duration": 2, "timing": "round_end", "damage": 4, "ignores_guard": true}},
+  "statuses": {
+    "burn": {
+      "duration": 2,
+      "timing": "round_end",
+      "damage": 4,
+      "ignores_guard": true
+    }
+  },
   "policies": {
-    "caster": {"normal": "attack", "charge": "charge", "charged": "nova", "charge_every": 3, "charge_offset": 2},
-    "shield": {"normal": "attack", "alternate": "guard", "alternate_every": 2}
+    "caster": {
+      "normal": "attack",
+      "charge": "charge",
+      "charged": "nova",
+      "charge_every": 3,
+      "charge_offset": 2
+    },
+    "shield": {
+      "normal": "attack",
+      "alternate": "guard",
+      "alternate_every": 2
+    },
+    "mender": {
+      "normal": "attack",
+      "alternate": "mend",
+      "alternate_every": 2
+    }
+  },
+  "items": {
+    "potion": {
+      "skill": "item_potion",
+      "max_stack": 3
+    },
+    "ether": {
+      "skill": "item_ether",
+      "max_stack": 3
+    },
+    "revive": {
+      "skill": "item_revive",
+      "max_stack": 2
+    }
+  },
+  "encounters": {
+    "embers": {
+      "enemies": [
+        "warlock",
+        "sentinel"
+      ],
+      "name": "灰の門 / 通常戦"
+    },
+    "herbs": {
+      "enemies": [
+        "mender",
+        "sentinel"
+      ],
+      "name": "再生の庭 / 通常戦"
+    },
+    "crossfire": {
+      "enemies": [
+        "warlock",
+        "mender"
+      ],
+      "name": "火種の回廊 / 通常戦"
+    },
+    "elite_gate": {
+      "enemies": [
+        "elite",
+        "sentinel"
+      ],
+      "name": "門番 / 強敵戦"
+    },
+    "elite_garden": {
+      "enemies": [
+        "elite",
+        "mender"
+      ],
+      "name": "庭の守護者 / 強敵戦"
+    },
+    "final": {
+      "enemies": [
+        "boss"
+      ],
+      "name": "灰冠の主 / 最奥ボス"
+    }
+  },
+  "route": [
+    [
+      "embers",
+      "herbs"
+    ],
+    [
+      "herbs",
+      "crossfire"
+    ],
+    [
+      "elite_gate",
+      "elite_garden"
+    ],
+    [
+      "final"
+    ]
+  ],
+  "presets": {
+    "burst": {
+      "knight": [
+        "edge",
+        "focus"
+      ],
+      "mage": [
+        "ember",
+        "focus"
+      ],
+      "cleric": [
+        "crest",
+        "focus"
+      ]
+    },
+    "sustain": {
+      "knight": [
+        "stone",
+        "chalice"
+      ],
+      "mage": [
+        "crest",
+        "chalice"
+      ],
+      "cleric": [
+        "stone",
+        "focus"
+      ]
+    }
+  },
+  "initial_inventory": {
+    "potion": 2,
+    "ether": 1,
+    "revive": 1
+  },
+  "rewards": {
+    "gear_ring": {
+      "kind": "equipment",
+      "equipment": "ring"
+    },
+    "gear_boots": {
+      "kind": "equipment",
+      "equipment": "boots"
+    },
+    "gear_amulet": {
+      "kind": "equipment",
+      "equipment": "amulet"
+    },
+    "gear_crest": {
+      "kind": "equipment",
+      "equipment": "crest"
+    },
+    "gear_ember": {
+      "kind": "equipment",
+      "equipment": "ember"
+    },
+    "gear_stone": {
+      "kind": "equipment",
+      "equipment": "stone"
+    },
+    "gear_chalice": {
+      "kind": "equipment",
+      "equipment": "chalice"
+    },
+    "gear_reservoir": {
+      "kind": "equipment",
+      "equipment": "reservoir"
+    },
+    "gear_focus": {
+      "kind": "equipment",
+      "equipment": "focus"
+    },
+    "gear_edge": {
+      "kind": "equipment",
+      "equipment": "edge"
+    },
+    "item_potion": {
+      "kind": "item",
+      "item": "potion",
+      "quantity": 1
+    },
+    "item_ether": {
+      "kind": "item",
+      "item": "ether",
+      "quantity": 1
+    },
+    "rest": {
+      "kind": "restore",
+      "hp": 18,
+      "tp": 1
+    }
+  },
+  "reward_groups": [
+    [
+      "gear_ring",
+      "gear_boots",
+      "gear_amulet",
+      "gear_crest",
+      "gear_ember",
+      "gear_stone",
+      "gear_chalice",
+      "gear_reservoir",
+      "gear_focus",
+      "gear_edge"
+    ],
+    [
+      "item_potion",
+      "item_ether"
+    ],
+    [
+      "rest"
+    ]
+  ],
+  "event": {
+    "id": "shrine",
+    "name": "残り火の祭壇",
+    "choices": [
+      {
+        "id": "shelter",
+        "name": "火を分ける",
+        "description": "生存者全員 HP+24 / TP+1。装備を得る機会を手放す。",
+        "kind": "restore",
+        "hp": 24,
+        "tp": 1
+      },
+      {
+        "id": "bargain",
+        "name": "血で契約する",
+        "description": "生存者全員 HP−10（最低1）。血の聖杯を1個獲得。",
+        "kind": "equipment",
+        "hp_cost": 10,
+        "equipment": "chalice"
+      }
+    ]
   }
 }
