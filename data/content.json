@@ -8,7 +8,13 @@
   "rules": {
     "guard_multiplier": 0.5,
     "inventory_slots": 3,
-    "item_stack": 3
+    "item_stack": 3,
+    "tp_recovery": {
+      "enabled": true,
+      "entry": 2,
+      "pool": 4,
+      "round": 1
+    }
   },
   "units": {
     "knight": {
@@ -602,5 +608,66 @@
         "equipment": "chalice"
       }
     ]
+  },
+  "growth": {
+    "enabled": true,
+    "levels": {
+      "2": {
+        "kind": "choice",
+        "options": [
+          "spread",
+          "detonate",
+          "riposte"
+        ]
+      },
+      "3": {
+        "kind": "slots",
+        "slots": 3
+      },
+      "4": {
+        "kind": "choice",
+        "options": [
+          "counter_order",
+          "ember_hunt",
+          "careful"
+        ]
+      }
+    },
+    "options": {
+      "spread": {
+        "kind": "spread",
+        "unit": "mage",
+        "skill": "fireball",
+        "status": "burn",
+        "chance": 0.6,
+        "targets": 1
+      },
+      "detonate": {
+        "kind": "detonate",
+        "unit": "mage",
+        "skill": "fireball",
+        "status": "burn",
+        "damage": 12
+      },
+      "riposte": {
+        "kind": "counter_stance",
+        "unit": "knight",
+        "skill": "pressure",
+        "value": 10
+      },
+      "counter_order": {
+        "kind": "counter_tp",
+        "value": 1
+      },
+      "ember_hunt": {
+        "kind": "burn_bonus",
+        "status": "burn",
+        "value": 8
+      },
+      "careful": {
+        "kind": "entry_bonus",
+        "value": 1
+      }
+    }
   }
 }

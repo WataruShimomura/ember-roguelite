@@ -18,10 +18,18 @@ func _init(content) -> void:
 	resolver = Resolver.new(content)
 	policy = Policy.new(content)
 
-func start(loadout: Dictionary, seed_value: int = 20261115, party: Dictionary = {}, enemies: Array = ["warlock", "sentinel"], inventory: Dictionary = {}) -> void:
+func start(loadout: Dictionary, seed_value: int = 20261115, party: Dictionary = {}, enemies: Array = ["warlock", "sentinel"], inventory: Dictionary = {}, upgrades: Array = [], entry_sources: Array = []) -> void:
 	assert(catalog.errors.is_empty(), "Invalid content definitions")
 	state = State.new(catalog, loadout, seed_value, party, enemies, inventory)
 	state.record("start", {"seed": seed_value, "order": state.order.duplicate()})
+	var recovery = catalog.data.rules.tp_recovery
+	for id in catalog.party_ids():
+		var unit = state.units[id]
+		unit.growth = upgrades.duplicate()
+		if unit.hp > 0:
+			for source in entry_sources: resolver.change_tp(state, id, int(source.value), source.source)
+		unit.tp_pool = int(recovery.pool) if recovery.enabled else 0
+		state.record("tp_pool_created", {"actor": id, "amount": unit.tp_pool})
 	for id in state.order:
 		for effect in catalog.equipment_effects(state.units[id], "stat"):
 			resolver.equipment_event(state, effect, id)
@@ -30,7 +38,18 @@ func start(loadout: Dictionary, seed_value: int = 20261115, party: Dictionary = 
 		advance()
 
 func begin_round() -> void:
+	if state.round_started == state.round: return
+	state.round_started = state.round
 	state.cursor = 0
+	if state.round >= 2:
+		for id in state.alive("ally"):
+			var unit = state.units[id]
+			var amount = mini(int(unit.tp_pool), mini(int(catalog.data.rules.tp_recovery.round), int(unit.stats.MAX_TP - unit.tp)))
+			if amount <= 0: continue
+			var before = int(unit.tp_pool)
+			resolver.change_tp(state, id, amount, "recovery:round")
+			unit.tp_pool -= amount
+			state.record("tp_pool_spent", {"actor": id, "amount": amount, "before": before, "after": unit.tp_pool})
 	for unit in state.units.values():
 		unit.acted = false
 	state.intents = policy.build(state)
@@ -106,12 +125,16 @@ func execute(calculation: Dictionary) -> void:
 	check_winner()
 
 func check_winner() -> bool:
+	if state.phase == "finished": return true
 	if state.alive("ally").is_empty():
 		state.winner = "enemy"
 	elif state.alive("enemy").is_empty():
 		state.winner = "ally"
 	if not state.winner.is_empty():
 		state.phase = "finished"
+		for id in state.alive("ally") + state.order.filter(func(key): return state.units[key].team == "ally" and state.units[key].hp == 0):
+			state.record("tp_pool_discarded", {"actor": id, "amount": state.units[id].tp_pool})
+			state.units[id].tp_pool = 0
 		state.record("finish", {"winner": state.winner})
 		return true
 	return false
@@ -132,6 +155,8 @@ func advance() -> void:
 			continue
 		if unit.guard:
 			unit.guard = false
+			unit.counter_bonus = 0
+			unit.counter_source = ""
 			state.record("guard_expired", {"actor": id})
 		if unit.team == "ally":
 			state.phase = "input"

@@ -26,6 +26,7 @@ func handle_key(_key: int) -> bool:
 func heading(title: String, subtitle: String) -> void:
 	add_child(label("E M B E R   /   " + title, 30, accent))
 	add_child(wrapped(subtitle, 15, muted))
+	if not snapshot.is_empty() and not snapshot.phase == "battle": add_child(label("共通Lv%d / 装備%d枠" % [snapshot.level, snapshot.equipment_slots], 15, accent))
 	add_child(HSeparator.new())
 
 func party_cards(parent: Node, party: Dictionary, loadout: Dictionary) -> void:

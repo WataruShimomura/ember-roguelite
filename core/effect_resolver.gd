@@ -22,7 +22,7 @@ func apply(state, calculation: Dictionary) -> void:
 	assert(calculation.effects.size() <= MAX_EFFECTS, "Effect budget exceeded")
 	for effect in calculation.effects:
 		var target = state.units[effect.target]
-		if target.hp <= 0 and effect.kind != "revive": continue
+		if target.hp <= 0 and not effect.kind in ["revive", "growth_trigger"]: continue
 		var seen: Array = []
 		for source in effect.sources:
 			if not source.source in seen:
@@ -31,6 +31,16 @@ func apply(state, calculation: Dictionary) -> void:
 		var event = effect.duplicate(true)
 		event.skill = calculation.skill
 		match effect.kind:
+			"remove_status":
+				target.statuses.erase(effect.status)
+				state.record("remove_status", event)
+			"growth_trigger":
+				if not effect.key in target.growth_used: target.growth_used.append(effect.key)
+				state.record("growth_trigger", event)
+			"counter_stance":
+				target.counter_bonus = int(effect.value)
+				target.counter_source = effect.source
+				state.record("counter_stance", event)
 			"damage":
 				event.amount = mini(int(effect.amount), int(target.hp))
 				target.hp -= event.amount

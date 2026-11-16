@@ -47,7 +47,7 @@ func append_recovery(projected: Dictionary, effects: Array, actor: String, targe
 	target[field] += amount
 	effects.append({"kind": kind, "actor": actor, "target": target_id, "amount": amount, "raw": raw, "source": source, "credit": credit, "sources": [{"source": source, "operation": "+", "value": raw}]})
 
-func append_damage(projected: Dictionary, effects: Array, actor_id: String, target_id: String, base: float, sources: Array, source: String, counter_allowed: bool = true, bypass: bool = false) -> void:
+func append_damage(projected: Dictionary, effects: Array, actor_id: String, target_id: String, base: float, sources: Array, source: String, counter_allowed: bool = true, bypass: bool = false, counter_hit: bool = false) -> void:
 	var actor = projected[actor_id]
 	var target = projected[target_id]
 	if target.hp <= 0: return
@@ -65,16 +65,48 @@ func append_damage(projected: Dictionary, effects: Array, actor_id: String, targ
 	target.hp -= actual
 	var credit = maxi(0, int(target.low_water) - int(target.hp)) if target.team == "enemy" else 0
 	target.low_water = mini(int(target.low_water), int(target.hp))
-	effects.append({"kind": "damage", "actor": actor_id, "target": target_id, "raw": raw, "amount": actual, "credit": credit, "low_after": target.low_water, "source": source, "sources": trace, "counter": not counter_allowed and source.begins_with("equipment:")})
+	effects.append({"kind": "damage", "actor": actor_id, "target": target_id, "raw": raw, "amount": actual, "credit": credit, "low_after": target.low_water, "source": source, "sources": trace, "counter": counter_hit})
 	# A single credit per damage is reused by all siphons; no credit from re-damage.
 	if credit > 0 and actor.hp > 0 and actor.team != target.team:
 		for kind in ["siphon_hp", "siphon_tp"]:
 			for siphon in catalog.equipment_effects(actor, kind):
 				append_recovery(projected, effects, actor_id, actor_id, "heal" if kind == "siphon_hp" else "tp", int(floor(credit * float(siphon.value))), siphon.source, credit)
+	if counter_hit and actual > 0 and actor.hp > 0:
+		for bonus in catalog.growth_effects(actor, "counter_tp"):
+			if not bonus.source in actor.growth_used:
+				consume_growth(actor, effects, bonus.source)
+				append_recovery(projected, effects, actor_id, actor_id, "tp", int(bonus.value), bonus.source)
 	if counter_allowed and actual > 0 and target.hp > 0 and actor.hp > 0:
-		for counter in catalog.equipment_effects(target, "counter"):
+		var counters = catalog.equipment_effects(target, "counter")
+		if target.counter_bonus > 0: counters.append({"source": target.counter_source, "value": target.counter_bonus})
+		for counter in counters:
 			if actor.hp <= 0: break
-			append_damage(projected, effects, target_id, actor_id, float(counter.value), [{"source": counter.source, "operation": "+", "value": counter.value}], counter.source, false)
+			append_damage(projected, effects, target_id, actor_id, float(counter.value), [{"source": counter.source, "operation": "+", "value": counter.value}], counter.source, false, false, true)
+
+func consume_growth(unit: Dictionary, effects: Array, source: String) -> void:
+	unit.growth_used.append(source)
+	effects.append({"kind": "growth_trigger", "actor": unit.id, "target": unit.id, "key": source, "source": source, "sources": []})
+
+func skill_growth(projected: Dictionary, effects: Array, actor: Dictionary, target_id: String, skill: String, order: Array, before: bool) -> void:
+	for kind in (["detonate"] if before else ["spread", "counter_stance"]):
+		for growth in catalog.growth_effects(actor, kind):
+			if growth.skill != skill or actor.hp <= 0: continue
+			var target = projected[target_id]
+			if kind == "detonate" and target.hp > 0 and target.statuses.has(growth.status):
+				target.statuses.erase(growth.status)
+				effects.append({"kind": "remove_status", "actor": actor.id, "target": target_id, "status": growth.status, "source": growth.source, "sources": []})
+				append_damage(projected, effects, actor.id, target_id, float(growth.damage), [{"source": growth.source, "operation": "+", "value": growth.damage}], growth.source, false)
+			elif kind == "spread" and target.hp > 0:
+				var remaining = int(growth.targets)
+				for id in order:
+					if remaining <= 0: break
+					if id == target_id or projected[id].team == actor.team or projected[id].hp <= 0: continue
+					effects.append({"kind": "status", "actor": actor.id, "target": id, "status": growth.status, "chance": growth.chance, "source": growth.source, "sources": [{"source": growth.source, "operation": "+", "value": growth.chance}]})
+					remaining -= 1
+			elif kind == "counter_stance":
+				actor.counter_bonus = int(growth.value)
+				actor.counter_source = growth.source
+				effects.append({"kind": "counter_stance", "actor": actor.id, "target": actor.id, "value": growth.value, "source": growth.source, "sources": []})
 
 func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> Dictionary:
 	var projected = state.units.duplicate(true)
@@ -85,6 +117,8 @@ func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> 
 	actor.tp = maxi(0, int(actor.tp) - int(payment.amount))
 	for target_id in target_ids:
 		if actor.hp <= 0: break
+		var starting_statuses = projected[target_id].statuses.duplicate(true)
+		skill_growth(projected, result.effects, actor, target_id, skill_id, state.order, true)
 		for definition in skill.effects:
 			var recipient = actor_id if definition.get("recipient", "") == "self" else target_id
 			var target = projected[recipient]
@@ -98,7 +132,17 @@ func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> 
 					var amount = float(definition.get("base", 0))
 					for entry in sources: amount += entry.value
 					sources.append({"source": source, "operation": "+", "value": definition.get("base", 0)})
-					if definition.kind == "damage": append_damage(projected, result.effects, actor_id, recipient, amount, sources, source)
+					if definition.kind == "damage":
+						var bonuses: Array = []
+						for bonus in catalog.growth_effects(actor, "burn_bonus"):
+							if starting_statuses.has(bonus.status) and not bonus.source in actor.growth_used:
+								amount += float(bonus.value)
+								sources.append({"source": bonus.source, "operation": "+", "value": bonus.value})
+								bonuses.append(bonus)
+						var position = result.effects.size()
+						append_damage(projected, result.effects, actor_id, recipient, amount, sources, source)
+						if result.effects[position].amount > 0:
+							for bonus in bonuses: consume_growth(actor, result.effects, bonus.source)
 					else:
 						append_recovery(projected, result.effects, actor_id, recipient, "heal", int(floor(maxf(0, amount))), source)
 						result.effects[-1].sources = sources
@@ -116,4 +160,5 @@ func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> 
 					effect.multiplier = catalog.data.rules.guard_multiplier
 					result.effects.append(effect)
 				"modifier", "charge": result.effects.append(effect)
+		skill_growth(projected, result.effects, actor, target_id, skill_id, state.order, false)
 	return result
