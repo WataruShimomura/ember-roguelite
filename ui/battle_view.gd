@@ -69,6 +69,8 @@ func build() -> void:
 		node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		node.disabled = payment.amount > battle.units[actor].tp
 		node.tooltip_text = "本人のTPが不足しています" if node.disabled else "予測を確認して実行"
+		var hint: String = visuals.data.get("skill_hints", {}).get(skill, "")
+		if not hint.is_empty(): node.tooltip_text += "\n" + hint
 		for id in transformations: node.tooltip_text += "\n" + visuals.data.growth[id].description
 		row.add_child(node)
 		command_buttons.append(node)
@@ -219,7 +221,9 @@ func select_action(skill: String, item: String = "") -> void:
 	for index in range(commands.size()):
 		command_buttons[index].add_theme_stylebox_override("normal", style(Color("443726") if commands[index] == skill else Color("1a2534"), accent if commands[index] == skill else Color("2c384b")))
 	calculation = engine.preview(actor, skill, selected_target)
-	preview.text = ("%sを1個消費・1手番使用\n" % visuals.data.items[item] if not item.is_empty() else "") + visuals.describe(calculation)
+	var header: String = visuals.data.get("skill_hints", {}).get(skill, "")
+	if not item.is_empty(): header = "%sを1個消費・1手番使用" % visuals.data.items[item]
+	preview.text = (header + "\n" if not header.is_empty() else "") + visuals.describe(calculation)
 	confirm.disabled = calculation.targets.is_empty()
 	for id in unit_panels:
 		var border = accent if id == actor else (Color("82b9ec") if id == selected_target else visuals.color(id).darkened(.7))

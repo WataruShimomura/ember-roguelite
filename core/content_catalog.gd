@@ -27,6 +27,7 @@ func validate() -> Array[String]:
 		for effect in skill.get("effects", []):
 			if not effect.get("kind", "") in EFFECT_KINDS: errors.append("Unknown effect: " + id)
 			if effect.get("kind") == "status" and not data.statuses.has(effect.get("status", "")): errors.append("Unknown status: " + id)
+			if effect.has("pierces_guard") and (effect.kind != "damage" or not effect.pierces_guard is bool): errors.append("Invalid guard piercing: " + id)
 	for id in data.equipment:
 		for effect in data.equipment[id].get("effects", []):
 			if not effect.get("kind", "") in EQUIPMENT_KINDS: errors.append("Unknown equipment effect: " + id)

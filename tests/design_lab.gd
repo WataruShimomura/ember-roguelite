@@ -32,6 +32,8 @@ func _initialize() -> void:
 	if not require(catalog.errors.is_empty(), str(catalog.errors)):
 		quit(1)
 		return
+	if catalog.data.skills.strike.effects[0].get("pierces_guard", false):
+		check_skill_rules(catalog)
 	var output = {"base": BASE, "instructions": INSTRUCTIONS, "engine": Engine.get_version_info().string, "mode": mode, "rules": catalog.data.rules.tp_recovery, "runs": [], "delay_probe": [], "positions": []}
 	for seed_value in range(42, 52):
 		for preset in ["burst", "sustain"]:
@@ -48,6 +50,25 @@ func _initialize() -> void:
 		file.close()
 	print("DESIGN LAB %s: %d runs, %d delay probes, %d positions, %d failures" % [mode, output.runs.size(), output.delay_probe.size(), output.positions.size(), failures])
 	quit(0 if failures == 0 else 1)
+
+func check_skill_rules(catalog) -> void:
+	var battle = BattleEngine.new(catalog)
+	battle.start(catalog.data.presets.burst, 42, {}, ["sentinel"])
+	var attack: Dictionary = battle.preview("knight", "attack", "sentinel")
+	var strike: Dictionary = battle.preview("knight", "strike", "sentinel")
+	require(strike.effects[0].amount < attack.effects[0].amount, "normal wins against exposed target")
+	battle.state.units.sentinel.guard = true
+	var guarded: Dictionary = battle.preview("knight", "attack", "sentinel")
+	var piercing: Dictionary = battle.preview("knight", "strike", "sentinel")
+	require(piercing.effects[0].amount == strike.effects[0].amount and guarded.effects[0].amount < piercing.effects[0].amount, "strike trades open damage for bypass")
+	var roll_state: int = battle.state.rng.state
+	var hp: int = battle.state.units.sentinel.hp
+	require(battle.submit("knight", "strike", "sentinel", battle.state.revision), "strike execute")
+	require(battle.state.units.sentinel.hp == hp - piercing.effects[0].amount and roll_state == battle.state.rng.state, "strike preview agrees with execution")
+	var fire: Dictionary = battle.preview("mage", "fireball", "sentinel")
+	require(fire.effects.any(func(effect): return effect.kind == "status" and effect.chance == 1.0), "fireball guaranteed status preview")
+	require(battle.submit("mage", "fireball", "sentinel", battle.state.revision), "fireball execute")
+	require(battle.state.units.sentinel.statuses.has("burn"), "fireball applies forecast burn")
 
 func play(catalog, seed_value: int, preset: String, style: String, positions: Array) -> Dictionary:
 	var manager = Manager.new(catalog)

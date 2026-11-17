@@ -47,7 +47,7 @@ func append_recovery(projected: Dictionary, effects: Array, actor: String, targe
 	target[field] += amount
 	effects.append({"kind": kind, "actor": actor, "target": target_id, "amount": amount, "raw": raw, "source": source, "credit": credit, "sources": [{"source": source, "operation": "+", "value": raw}]})
 
-func append_damage(projected: Dictionary, effects: Array, actor_id: String, target_id: String, base: float, sources: Array, source: String, counter_allowed: bool = true, bypass: bool = false, counter_hit: bool = false) -> void:
+func append_damage(projected: Dictionary, effects: Array, actor_id: String, target_id: String, base: float, sources: Array, source: String, counter_allowed: bool = true, bypass: bool = false, counter_hit: bool = false, pierces_guard: bool = false) -> void:
 	var actor = projected[actor_id]
 	var target = projected[target_id]
 	if target.hp <= 0: return
@@ -58,8 +58,9 @@ func append_damage(projected: Dictionary, effects: Array, actor_id: String, targ
 			amount *= reduction.value
 			trace.append({"source": reduction.source, "operation": "×", "value": reduction.value, "owner": target_id})
 		if target.guard:
-			amount *= float(catalog.data.rules.guard_multiplier)
-			trace.append({"source": "stance:guard", "operation": "×", "value": catalog.data.rules.guard_multiplier})
+			var multiplier: float = 1.0 if pierces_guard else catalog.data.rules.guard_multiplier
+			amount *= multiplier
+			trace.append({"source": source + ":pierces_guard" if pierces_guard else "stance:guard", "operation": "×", "value": multiplier})
 	var raw = int(floor(amount))
 	var actual = mini(raw, int(target.hp))
 	target.hp -= actual
@@ -140,7 +141,7 @@ func calculate(state, actor_id: String, skill_id: String, target_ids: Array) -> 
 								sources.append({"source": bonus.source, "operation": "+", "value": bonus.value})
 								bonuses.append(bonus)
 						var position = result.effects.size()
-						append_damage(projected, result.effects, actor_id, recipient, amount, sources, source)
+						append_damage(projected, result.effects, actor_id, recipient, amount, sources, source, true, false, false, definition.get("pierces_guard", false))
 						if result.effects[position].amount > 0:
 							for bonus in bonuses: consume_growth(actor, result.effects, bonus.source)
 					else:
