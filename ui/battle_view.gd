@@ -28,7 +28,9 @@ func build() -> void:
 	actor = battle.actor
 	revision = battle.revision
 	commands = engine.commands(actor)
-	heading(catalog.data.encounters[snapshot.route[snapshot.node]].name, "共通Lv%d   戦闘 %d / 4   ROUND %02d   SEED %d   /   即時実行" % [snapshot.level, snapshot.node + 1, battle.round, snapshot.seed])
+	var subtitle = "共通Lv%d   戦闘 %d / 4   ROUND %02d   SEED %d   /   即時実行" % [snapshot.level, snapshot.node + 1, battle.round, snapshot.seed]
+	if app.lab_mode != "baseline": subtitle += "   /   Design Lab " + app.lab_mode
+	heading(catalog.data.encounters[snapshot.route[snapshot.node]].name, subtitle)
 	var order: Array[String] = []
 	for id in battle.order:
 		order.append(("▶ " if id == actor else ("✓ " if battle.units[id].acted else "")) + visuals.unit(id))
@@ -155,8 +157,14 @@ func unit_card(parent: Node, id: String) -> void:
 	var hp = ProgressBar.new(); hp.max_value = unit.stats.MAX_HP; hp.value = unit.hp; hp.show_percentage = false; hp.custom_minimum_size.y = 5
 	body.add_child(hp); hp_gauges[id] = hp
 	if unit.team == "ally":
-		var resources = label("HP %d/%d   TP %d/%d   自然 残%d" % [unit.hp, unit.stats.MAX_HP, unit.tp, unit.stats.MAX_TP, unit.tp_pool], 15)
-		resources.tooltip_text = "R2以降、ラウンド開始に最大%dTP。実回復分だけ自然プールを消費。" % catalog.data.rules.tp_recovery.round
+		var recovery = catalog.data.rules.tp_recovery
+		var text = "HP %d/%d   TP %d/%d" % [unit.hp, unit.stats.MAX_HP, unit.tp, unit.stats.MAX_TP]
+		if recovery.enabled and recovery.pool > 0: text += "   自然 残%d" % unit.tp_pool
+		var resources = label(text, 15)
+		if recovery.enabled and recovery.pool > 0:
+			resources.tooltip_text = "R2以降、ラウンド開始に最大%dTP。実回復分だけ自然プールを消費。" % recovery.round
+		elif recovery.enabled:
+			resources.tooltip_text = "開始時にTP+%d（上限まで）。ラウンド開始時の自然回復はありません。" % recovery.entry
 		body.add_child(resources); pool_labels[id] = resources
 		var tp = ProgressBar.new(); tp.max_value = unit.stats.MAX_TP; tp.value = unit.tp; tp.show_percentage = false; tp.custom_minimum_size.y = 5
 		var fill = StyleBoxFlat.new(); fill.bg_color = Color("82b9ec"); fill.set_corner_radius_all(3)

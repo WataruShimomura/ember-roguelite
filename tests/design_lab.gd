@@ -6,6 +6,7 @@ const BattleEngine = preload("res://core/battle_engine.gd")
 const State = preload("res://core/battle_state.gd")
 const Policy = preload("res://tests/design_lab_policy.gd")
 const Simulator = preload("res://tests/run_simulator.gd")
+const Variants = preload("res://lab/design_lab_variants.gd")
 const BASE = "c21c5bc4d42ff83602d2f74bd4d5f18c1678eed5"
 const INSTRUCTIONS = "3f395875ff4efbab8bbe4e1144f1befd20131226"
 var args = OS.get_cmdline_user_args()
@@ -18,10 +19,15 @@ func require(condition: bool, detail: String) -> bool:
 		failures += 1
 	return condition
 
-func content_for(_mode: String):
-	return Content.new()
+func content_for(candidate: String):
+	var catalog = Content.new()
+	Variants.apply(candidate, catalog)
+	return catalog
 
 func _initialize() -> void:
+	if not require(mode in Variants.MODES, "unknown mode"):
+		quit(1)
+		return
 	var catalog = content_for(mode)
 	if not require(catalog.errors.is_empty(), str(catalog.errors)):
 		quit(1)

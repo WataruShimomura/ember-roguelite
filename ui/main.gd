@@ -9,6 +9,8 @@ const Reward = preload("res://ui/reward_view.gd")
 const Camp = preload("res://ui/camp_view.gd")
 const Results = preload("res://ui/results_view.gd")
 const Growth = preload("res://ui/growth_view.gd")
+const Lab = preload("res://lab/design_lab_variants.gd")
+var lab_mode: String = Lab.requested()
 var catalog = Content.new()
 var manager = Manager.new(catalog)
 var visuals = Visuals.new()
@@ -24,6 +26,7 @@ var feedback_enabled: bool = true
 var displayed_battle_seed: int = -1
 
 func _ready() -> void:
+	Lab.apply(lab_mode, catalog, visuals)
 	loadout = catalog.data.presets[preset].duplicate(true)
 	var backdrop = visuals.texture(visuals.data.get("background", ""))
 	if backdrop:
