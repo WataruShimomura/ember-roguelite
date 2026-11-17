@@ -3,7 +3,7 @@ extends RefCounted
 var data: Dictionary = {}
 var errors: Array[String] = []
 const EFFECT_KINDS = ["damage", "heal", "tp", "revive", "guard", "modifier", "status", "charge"]
-const EQUIPMENT_KINDS = ["stat", "siphon_hp", "siphon_tp", "damage_multiplier", "counter", "cost_reduction", "status_chance"]
+const EQUIPMENT_KINDS = ["stat", "siphon_hp", "siphon_tp", "damage_multiplier", "counter", "cost_reduction", "status_chance", "grant_skill"]
 
 func _init(path: String = "res://data/content.json") -> void:
 	var parser = JSON.new()
@@ -27,11 +27,15 @@ func validate() -> Array[String]:
 		for effect in skill.get("effects", []):
 			if not effect.get("kind", "") in EFFECT_KINDS: errors.append("Unknown effect: " + id)
 			if effect.get("kind") == "status" and not data.statuses.has(effect.get("status", "")): errors.append("Unknown status: " + id)
+			if effect.has("pierces_guard") and (effect.kind != "damage" or not effect.pierces_guard is bool): errors.append("Invalid guard piercing: " + id)
 	for id in data.equipment:
 		for effect in data.equipment[id].get("effects", []):
 			if not effect.get("kind", "") in EQUIPMENT_KINDS: errors.append("Unknown equipment effect: " + id)
 			if effect.get("kind") == "stat" and not effect.get("stat", "") in data.stats: errors.append("Unknown stat: " + id)
 			if effect.get("kind") == "damage_multiplier" and (effect.get("value", -1) < 0 or effect.get("value", 2) > 1): errors.append("Invalid multiplier: " + id)
+			if effect.get("kind") == "grant_skill":
+				var skill = data.skills.get(effect.get("skill", ""), {})
+				if skill.is_empty() or skill.get("enemy_only", false): errors.append("Invalid granted skill: " + id)
 	for id in data.units:
 		var unit = data.units[id]
 		for stat in data.stats:

@@ -1,0 +1,56 @@
+{
+  "baseline_harness_commit": "f7956dd2db83bf6999efbb007eba60f492c9bdbc",
+  "cycles": [
+    {
+      "cycle": 1,
+      "control": "baseline",
+      "candidate": "tp",
+      "before_commit": "f7956dd2db83bf6999efbb007eba60f492c9bdbc",
+      "after_commit": "b3fa30c4965c8a03dea83ad3fc99320ccd5409f2",
+      "verdict": "採用推奨",
+      "change": "開始補充+2を残し、ラウンド自然回復を削除する。",
+      "improvement": "満タン張り付きを減らし、敵を残すことによる自然TP増加をゼロにする。",
+      "failure_example": "待機が自由なゲームではなく、アイテムなしの盾兵プローブでは現行版でも遅延不能。プール撤廃後もエーテル・吸収由来のTP差は残る。",
+      "side_effect": "TPゼロの手番と通常攻撃が増える。長い戦闘では終盤の支払い余力が減る。",
+      "human_check": "継戦構成の最奥戦で、ヒール用TPを残す判断と終盤の通常攻撃が続く感触を確認する。"
+    },
+    {
+      "cycle": 2,
+      "control": "tp",
+      "candidate": "skills",
+      "before_commit": "b3fa30c4965c8a03dea83ad3fc99320ccd5409f2",
+      "after_commit": "990598dfdddbff9f576a1fe0d0d12a7b8fc1bd17",
+      "verdict": "保留",
+      "change": "猛撃を威力−2の構え貫通へ、火球を威力−4の確定火傷へ差し替える。",
+      "improvement": "構え中の敵や、ラウンド終了時まで生存する敵への用途を分ける。",
+      "failure_example": "構えのないボスでは鎧割りの条件が成立しない。火種と同時に入れると、通常攻撃率と総被害が大きく上昇した。",
+      "side_effect": "盾兵を倒した後に鎧割りが腐りやすい。火傷の即時火力を落とすと敵手番前の撃破が減る。2技の寄与は未分離。",
+      "human_check": "同じ盾兵局面から、構えの有無と撃破圏を見て通常攻撃・鎧割りを選べるかを確認。火種の単独比較を行う。"
+    },
+    {
+      "cycle": 3,
+      "control": ["tp", "gear_ring", "gear_bench", "gear_rest"],
+      "candidate": ["gear", "gear_ward"],
+      "before_commit": "990598dfdddbff9f576a1fe0d0d12a7b8fc1bd17",
+      "after_commit": "1647902c5ebce7de5a8be66fb354412b67a3b108",
+      "verdict": "却下",
+      "change": "指輪のPOWER+3を、TP1と1手番で味方に構えを付ける護符コマンドへ差し替える。TP案を共通基準とし、第2サイクルのスキルは外す。",
+      "improvement": "取得・装備で対象を選ぶ新コマンドが増え、実際の被害を減らせる。",
+      "failure_example": "固定報酬で護符が選ばれたのは遅延とランダムのみ。剣士自身への護符は同コストの牽制と重複する。",
+      "side_effect": "味方の手番が近いと、敵が動く前に構えが切れる。TP・手番・初戦の小休息を手放す機会費用がある。",
+      "human_check": "破滅的な予告への対処として護符を選ぶ局面が読めるか確認。次候補は既存の行動と競合しにくい効果を別途検証する。"
+    }
+  ],
+  "checks": {
+    "unmodified_baseline_and_final_default": {"battle": 549, "growth": 67, "comparison": 74, "rendered_ui": 37, "failures": 0},
+    "rendered_candidate_ui": {"tp": 35, "skills": 35, "gear": 39, "failures": 0},
+    "godot_mcp": "利用可能なGodot MCPツールなし。Godotの描画付きUIテストとヘッドレス自動プレイを使用。"
+  },
+  "limitations": [
+    "7方針は固定ヒューリスティック。最適性やプレイヤーの面白さは未確認。",
+    "固定指輪の取得率は実験条件。自発的な報酬選択率は測定していない。",
+    "シードは42〜51。確定火傷と鎧割りの個別効果は分離していない。",
+    "長期戦はボスHP2倍の負荷試験で、通常4戦の最奥とは別条件。",
+    "遅延方針は合法コマンドのみ。有限の消費を伴う待機、4ラウンド以内の遅延を評価。"
+  ]
+}

@@ -28,7 +28,9 @@ func build() -> void:
 	actor = battle.actor
 	revision = battle.revision
 	commands = engine.commands(actor)
-	heading(catalog.data.encounters[snapshot.route[snapshot.node]].name, "共通Lv%d   戦闘 %d / 4   ROUND %02d   SEED %d   /   即時実行" % [snapshot.level, snapshot.node + 1, battle.round, snapshot.seed])
+	var subtitle = "共通Lv%d   戦闘 %d / 4   ROUND %02d   SEED %d   /   即時実行" % [snapshot.level, snapshot.node + 1, battle.round, snapshot.seed]
+	if app.lab_mode != "baseline": subtitle += "   /   Design Lab " + app.lab_mode
+	heading(catalog.data.encounters[snapshot.route[snapshot.node]].name, subtitle)
 	var order: Array[String] = []
 	for id in battle.order:
 		order.append(("▶ " if id == actor else ("✓ " if battle.units[id].acted else "")) + visuals.unit(id))
@@ -63,10 +65,13 @@ func build() -> void:
 		var transformations = snapshot.upgrades.filter(func(id):
 			var growth = catalog.data.growth.options[id]
 			return growth.get("unit", "") == actor and growth.get("skill", "") == skill)
-		var node = button("%d  %s%s  TP%d" % [index + 1, visuals.skill(skill), " ★" if not transformations.is_empty() else "", payment.amount], func(): select_action(skill))
+		var shortcut = index + 1 if index < 3 else index + 2
+		var node = button("%d  %s%s  TP%d" % [shortcut, visuals.skill(skill), " ★" if not transformations.is_empty() else "", payment.amount], func(): select_action(skill))
 		node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		node.disabled = payment.amount > battle.units[actor].tp
 		node.tooltip_text = "本人のTPが不足しています" if node.disabled else "予測を確認して実行"
+		var hint: String = visuals.data.get("skill_hints", {}).get(skill, "")
+		if not hint.is_empty(): node.tooltip_text += "\n" + hint
 		for id in transformations: node.tooltip_text += "\n" + visuals.data.growth[id].description
 		row.add_child(node)
 		command_buttons.append(node)
@@ -91,7 +96,8 @@ func build() -> void:
 	var controls = HBoxContainer.new()
 	console.add_child(controls)
 	controls.add_child(button("計算内訳 [D]", func(): app.show_details(calculation)))
-	controls.add_child(label("1〜3 選択 / ←→ 対象 / Enter 実行", 14, muted))
+	var command_keys = "1〜3・5〜%d" % (commands.size() + 1) if commands.size() > 4 else ("1〜3・5" if commands.size() == 4 else "1〜3")
+	controls.add_child(label(command_keys + " 選択 / ←→ 対象 / Enter 実行", 14, muted))
 	var space = Control.new(); space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	controls.add_child(space)
 	confirm = button("実行する [Enter] →", commit, true)
@@ -155,8 +161,14 @@ func unit_card(parent: Node, id: String) -> void:
 	var hp = ProgressBar.new(); hp.max_value = unit.stats.MAX_HP; hp.value = unit.hp; hp.show_percentage = false; hp.custom_minimum_size.y = 5
 	body.add_child(hp); hp_gauges[id] = hp
 	if unit.team == "ally":
-		var resources = label("HP %d/%d   TP %d/%d   自然 残%d" % [unit.hp, unit.stats.MAX_HP, unit.tp, unit.stats.MAX_TP, unit.tp_pool], 15)
-		resources.tooltip_text = "R2以降、ラウンド開始に最大%dTP。実回復分だけ自然プールを消費。" % catalog.data.rules.tp_recovery.round
+		var recovery = catalog.data.rules.tp_recovery
+		var text = "HP %d/%d   TP %d/%d" % [unit.hp, unit.stats.MAX_HP, unit.tp, unit.stats.MAX_TP]
+		if recovery.enabled and recovery.pool > 0: text += "   自然 残%d" % unit.tp_pool
+		var resources = label(text, 15)
+		if recovery.enabled and recovery.pool > 0:
+			resources.tooltip_text = "R2以降、ラウンド開始に最大%dTP。実回復分だけ自然プールを消費。" % recovery.round
+		elif recovery.enabled:
+			resources.tooltip_text = "開始時にTP+%d（上限まで）。ラウンド開始時の自然回復はありません。" % recovery.entry
 		body.add_child(resources); pool_labels[id] = resources
 		var tp = ProgressBar.new(); tp.max_value = unit.stats.MAX_TP; tp.value = unit.tp; tp.show_percentage = false; tp.custom_minimum_size.y = 5
 		var fill = StyleBoxFlat.new(); fill.bg_color = Color("82b9ec"); fill.set_corner_radius_all(3)
@@ -211,7 +223,9 @@ func select_action(skill: String, item: String = "") -> void:
 	for index in range(commands.size()):
 		command_buttons[index].add_theme_stylebox_override("normal", style(Color("443726") if commands[index] == skill else Color("1a2534"), accent if commands[index] == skill else Color("2c384b")))
 	calculation = engine.preview(actor, skill, selected_target)
-	preview.text = ("%sを1個消費・1手番使用\n" % visuals.data.items[item] if not item.is_empty() else "") + visuals.describe(calculation)
+	var header: String = visuals.data.get("skill_hints", {}).get(skill, "")
+	if not item.is_empty(): header = "%sを1個消費・1手番使用" % visuals.data.items[item]
+	preview.text = (header + "\n" if not header.is_empty() else "") + visuals.describe(calculation)
 	confirm.disabled = calculation.targets.is_empty()
 	for id in unit_panels:
 		var border = accent if id == actor else (Color("82b9ec") if id == selected_target else visuals.color(id).darkened(.7))
@@ -229,6 +243,7 @@ func commit() -> void:
 func handle_key(key: int) -> bool:
 	if key >= KEY_1 and key <= KEY_3: select_action(commands[key - KEY_1])
 	elif key == KEY_4: toggle_items()
+	elif key >= KEY_5 and key <= KEY_9 and key - KEY_5 + 3 < commands.size(): select_action(commands[key - KEY_5 + 3])
 	elif key in [KEY_LEFT, KEY_RIGHT]:
 		var targets = engine.legal_targets(actor, selected_skill)
 		if not targets.is_empty():

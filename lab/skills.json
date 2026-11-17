@@ -1,0 +1,14 @@
+{
+  "effects": {
+    "strike": [{"kind": "damage", "base": -2, "pierces_guard": true}],
+    "fireball": [
+      {"kind": "damage", "base": -4},
+      {"kind": "status", "status": "burn", "chance": 1.0}
+    ]
+  },
+  "names": {"strike": "鎧割り", "fireball": "火種"},
+  "hints": {
+    "strike": "通常攻撃より威力−2。構えによる軽減を無視。",
+    "fireball": "通常攻撃より威力−4。生存した対象に火傷を確定付与。"
+  }
+}

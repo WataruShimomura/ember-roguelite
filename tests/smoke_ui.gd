@@ -6,6 +6,7 @@ var game
 var captured: Dictionary = {}
 var equipped_third: bool = false
 var checked_growth_marker: bool = false
+var checked_ward: bool = false
 
 func check(condition: bool, message: String) -> void:
 	checks += 1
@@ -58,6 +59,8 @@ func run() -> void:
 	root.add_child(game)
 	await process_frame
 	check(game.screen == "preparation", "preparation without assets")
+	if game.lab_mode == "gear":
+		game.catalog.data.reward_groups[0] = ["gear_ring"]
 	await capture("01_preparation")
 	game.current_view.launch.pressed.emit()
 	await process_frame
@@ -100,6 +103,19 @@ func run() -> void:
 		safety += 1
 		match game.screen:
 			"battle":
+				if game.lab_mode == "gear" and not checked_ward and "ward" in game.current_view.commands:
+					checked_ward = true
+					key(KEY_5); await process_frame
+					check(game.current_view.selected_skill == "ward", "gear shortcut selects ward")
+					var target = game.manager.battle.state.intents.values()[0].targets[0]
+					game.current_view.selected_target = target
+					game.current_view.select_action("ward")
+					check(game.current_view.calculation.effects[0].kind == "guard" and game.current_view.calculation.targets == [target], "ward preview shows chosen ally")
+					await capture("lab_ward")
+					game.current_view.confirm.pressed.emit()
+					check(game.manager.battle.state.events.any(func(event): return event.type == "guard" and event.skill == "ward" and event.target == target), "ward executes via command button")
+					await process_frame
+					continue
 				if game.manager.snapshot().level == 4: await capture("boss_hud")
 				if game.manager.snapshot().level >= 2 and game.manager.battle.state.actor() == "mage" and not checked_growth_marker:
 					checked_growth_marker = true
@@ -143,6 +159,7 @@ func run() -> void:
 				game.current_view.proceed.pressed.emit()
 		await process_frame
 	check(game.screen == "finished", "UI reaches adventure result")
+	if game.lab_mode == "gear": check(checked_ward, "acquired gear grants a battle command")
 	check(game.manager.snapshot().outcome == "clear" and game.manager.snapshot().battles.size() == 4, "four-fight UI clear")
 	await capture("09_run_result")
 	if OS.get_cmdline_user_args().has("--save-log"):
