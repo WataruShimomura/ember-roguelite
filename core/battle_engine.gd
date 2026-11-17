@@ -56,7 +56,11 @@ func begin_round() -> void:
 	state.record("round", {"intents": state.intents.duplicate(true)})
 
 func commands(actor_id: String) -> Array:
-	return ["attack"] + catalog.data.units[actor_id].skills
+	var offered: Array = ["attack"] + catalog.data.units[actor_id].skills
+	if state == null or not state.units.has(actor_id): return offered
+	for effect in catalog.equipment_effects(state.units[actor_id], "grant_skill"):
+		if not effect.skill in offered: offered.append(effect.skill)
+	return offered
 
 func legal_targets(actor_id: String, skill_id: String) -> Array:
 	var mode = catalog.data.skills[skill_id].target

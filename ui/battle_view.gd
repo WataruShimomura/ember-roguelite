@@ -65,7 +65,8 @@ func build() -> void:
 		var transformations = snapshot.upgrades.filter(func(id):
 			var growth = catalog.data.growth.options[id]
 			return growth.get("unit", "") == actor and growth.get("skill", "") == skill)
-		var node = button("%d  %s%s  TP%d" % [index + 1, visuals.skill(skill), " ★" if not transformations.is_empty() else "", payment.amount], func(): select_action(skill))
+		var shortcut = index + 1 if index < 3 else index + 2
+		var node = button("%d  %s%s  TP%d" % [shortcut, visuals.skill(skill), " ★" if not transformations.is_empty() else "", payment.amount], func(): select_action(skill))
 		node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		node.disabled = payment.amount > battle.units[actor].tp
 		node.tooltip_text = "本人のTPが不足しています" if node.disabled else "予測を確認して実行"
@@ -95,7 +96,8 @@ func build() -> void:
 	var controls = HBoxContainer.new()
 	console.add_child(controls)
 	controls.add_child(button("計算内訳 [D]", func(): app.show_details(calculation)))
-	controls.add_child(label("1〜3 選択 / ←→ 対象 / Enter 実行", 14, muted))
+	var command_keys = "1〜3・5〜%d" % (commands.size() + 1) if commands.size() > 4 else ("1〜3・5" if commands.size() == 4 else "1〜3")
+	controls.add_child(label(command_keys + " 選択 / ←→ 対象 / Enter 実行", 14, muted))
 	var space = Control.new(); space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	controls.add_child(space)
 	confirm = button("実行する [Enter] →", commit, true)
@@ -241,6 +243,7 @@ func commit() -> void:
 func handle_key(key: int) -> bool:
 	if key >= KEY_1 and key <= KEY_3: select_action(commands[key - KEY_1])
 	elif key == KEY_4: toggle_items()
+	elif key >= KEY_5 and key <= KEY_9 and key - KEY_5 + 3 < commands.size(): select_action(commands[key - KEY_5 + 3])
 	elif key in [KEY_LEFT, KEY_RIGHT]:
 		var targets = engine.legal_targets(actor, selected_skill)
 		if not targets.is_empty():

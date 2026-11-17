@@ -1,0 +1,16 @@
+{
+  "skill": {
+    "cost": 1,
+    "target": "ally",
+    "effects": [{"kind": "guard"}]
+  },
+  "equipment": {
+    "effects": [{"kind": "grant_skill", "skill": "ward"}]
+  },
+  "display": {
+    "name": "護り手の指輪",
+    "description": "使用者の1手番とTP1で、指定した味方を次の自身の手番まで軽減状態にする「護符」を追加"
+  },
+  "skill_name": "護符",
+  "hint": "対象の次の手番まで被ダメージ半減。敵との行動順を確認。"
+}

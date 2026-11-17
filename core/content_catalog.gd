@@ -3,7 +3,7 @@ extends RefCounted
 var data: Dictionary = {}
 var errors: Array[String] = []
 const EFFECT_KINDS = ["damage", "heal", "tp", "revive", "guard", "modifier", "status", "charge"]
-const EQUIPMENT_KINDS = ["stat", "siphon_hp", "siphon_tp", "damage_multiplier", "counter", "cost_reduction", "status_chance"]
+const EQUIPMENT_KINDS = ["stat", "siphon_hp", "siphon_tp", "damage_multiplier", "counter", "cost_reduction", "status_chance", "grant_skill"]
 
 func _init(path: String = "res://data/content.json") -> void:
 	var parser = JSON.new()
@@ -33,6 +33,9 @@ func validate() -> Array[String]:
 			if not effect.get("kind", "") in EQUIPMENT_KINDS: errors.append("Unknown equipment effect: " + id)
 			if effect.get("kind") == "stat" and not effect.get("stat", "") in data.stats: errors.append("Unknown stat: " + id)
 			if effect.get("kind") == "damage_multiplier" and (effect.get("value", -1) < 0 or effect.get("value", 2) > 1): errors.append("Invalid multiplier: " + id)
+			if effect.get("kind") == "grant_skill":
+				var skill = data.skills.get(effect.get("skill", ""), {})
+				if skill.is_empty() or skill.get("enemy_only", false): errors.append("Invalid granted skill: " + id)
 	for id in data.units:
 		var unit = data.units[id]
 		for stat in data.stats:

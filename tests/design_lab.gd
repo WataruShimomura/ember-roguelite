@@ -9,6 +9,7 @@ const Simulator = preload("res://tests/run_simulator.gd")
 const Variants = preload("res://lab/design_lab_variants.gd")
 const BASE = "c21c5bc4d42ff83602d2f74bd4d5f18c1678eed5"
 const INSTRUCTIONS = "3f395875ff4efbab8bbe4e1144f1befd20131226"
+const REWARD_TRIALS = ["gear_ring", "gear_ward", "gear_bench", "gear_rest"]
 var args = OS.get_cmdline_user_args()
 var mode: String = args[0] if not args.is_empty() else "baseline"
 var failures: int = 0
@@ -21,11 +22,16 @@ func require(condition: bool, detail: String) -> bool:
 
 func content_for(candidate: String):
 	var catalog = Content.new()
-	Variants.apply(candidate, catalog)
+	if candidate in REWARD_TRIALS:
+		var variant = "tp" if candidate == "gear_ring" else "gear"
+		Variants.apply(variant, catalog)
+		catalog.data.reward_groups[0] = ["gear_ring"]
+	else:
+		Variants.apply(candidate, catalog)
 	return catalog
 
 func _initialize() -> void:
-	if not require(mode in Variants.MODES, "unknown mode"):
+	if not require(mode in Variants.MODES or mode in REWARD_TRIALS, "unknown mode"):
 		quit(1)
 		return
 	var catalog = content_for(mode)
@@ -34,7 +40,9 @@ func _initialize() -> void:
 		return
 	if catalog.data.skills.strike.effects[0].get("pierces_guard", false):
 		check_skill_rules(catalog)
-	var output = {"base": BASE, "instructions": INSTRUCTIONS, "engine": Engine.get_version_info().string, "mode": mode, "rules": catalog.data.rules.tp_recovery, "runs": [], "delay_probe": [], "positions": []}
+	if catalog.data.skills.has("ward"):
+		check_gear_rules(catalog)
+	var output = {"base": BASE, "instructions": INSTRUCTIONS, "engine": Engine.get_version_info().string, "mode": mode, "rules": catalog.data.rules.tp_recovery, "runs": [], "delay_probe": [], "positions": [], "long_fight": []}
 	for seed_value in range(42, 52):
 		for preset in ["burst", "sustain"]:
 			for style in Policy.NAMES:
@@ -42,13 +50,15 @@ func _initialize() -> void:
 		for items in [false, true]:
 			for delay in [false, true]:
 				output.delay_probe.append(probe(catalog, seed_value, delay, items))
+		for preset in ["burst", "sustain"]:
+			output.long_fight.append(long_fight(catalog, seed_value, preset))
 	output.failures = failures
 	DirAccess.make_dir_recursive_absolute("res://tests/artifacts")
 	var file = FileAccess.open("res://tests/artifacts/design_lab_%s.json" % mode, FileAccess.WRITE)
 	if require(file != null, "write measurements"):
 		file.store_string(JSON.stringify(output))
 		file.close()
-	print("DESIGN LAB %s: %d runs, %d delay probes, %d positions, %d failures" % [mode, output.runs.size(), output.delay_probe.size(), output.positions.size(), failures])
+	print("DESIGN LAB %s: %d runs, %d delay probes, %d long fights, %d positions, %d failures" % [mode, output.runs.size(), output.delay_probe.size(), output.long_fight.size(), output.positions.size(), failures])
 	quit(0 if failures == 0 else 1)
 
 func check_skill_rules(catalog) -> void:
@@ -69,6 +79,24 @@ func check_skill_rules(catalog) -> void:
 	require(fire.effects.any(func(effect): return effect.kind == "status" and effect.chance == 1.0), "fireball guaranteed status preview")
 	require(battle.submit("mage", "fireball", "sentinel", battle.state.revision), "fireball execute")
 	require(battle.state.units.sentinel.statuses.has("burn"), "fireball applies forecast burn")
+
+func check_gear_rules(catalog) -> void:
+	var battle = BattleEngine.new(catalog)
+	var loadout: Dictionary = catalog.data.presets.burst.duplicate(true)
+	loadout.knight = ["ring", "ring"]
+	battle.start(loadout, 42, {}, ["warlock"])
+	require(battle.commands("knight").count("ward") == 1 and not "ward" in battle.commands("mage"), "equipment grants only one command to wearer")
+	var target: String = battle.state.intents.warlock.targets[0]
+	var unguarded: int = battle.intent_preview("warlock").calculation.effects[0].amount
+	var before: Dictionary = battle.snapshot()
+	var ward: Dictionary = battle.preview("knight", "ward", target)
+	require(ward.cost == 1 and ward.effects[0].kind == "guard" and battle.snapshot() == before, "ward preview is pure")
+	require(battle.submit("knight", "ward", target, battle.state.revision), "submit equipment skill")
+	var mitigated: int = battle.intent_preview("warlock").calculation.effects[0].amount
+	require(unguarded > mitigated and battle.state.units[target].guard, "ward updates enemy prediction")
+	require(not battle.submit("mage", "ward", target, battle.state.revision), "non-wearer input rejected")
+	require(battle.submit("mage", "attack", "warlock", battle.state.revision), "advance to forecast")
+	require(battle.state.units[target].hp == before.units[target].hp - mitigated, "ward prediction agrees with enemy damage")
 
 func play(catalog, seed_value: int, preset: String, style: String, positions: Array) -> Dictionary:
 	var manager = Manager.new(catalog)
@@ -109,7 +137,7 @@ func play(catalog, seed_value: int, preset: String, style: String, positions: Ar
 				record_turn(current, battle, action, delaying)
 				if not require(battle.submit(actor, action.skill, action.target, state.revision, action.item), "submit " + str(action)): break
 			"battle_result": require(manager.continue_result(revision), "continue")
-			"reward": require(manager.choose_reward(0 if run.node == 0 else 2, revision), "reward")
+			"reward": require(manager.choose_reward(0 if run.node == 0 and mode != "gear_rest" else 2, revision), "reward")
 			"growth":
 				var index: int = 0 if run.level == 3 else run.growth_options.find(growth[0 if run.level == 2 else 1])
 				require(manager.choose_growth(index, revision), "growth")
@@ -121,7 +149,7 @@ func play(catalog, seed_value: int, preset: String, style: String, positions: Ar
 
 func equip_reward(manager) -> void:
 	var run = manager.state
-	if run.equipment_slots != 3 or run.loadout.knight[2] != "": return
+	if mode == "gear_bench" or run.equipment_slots != 3 or run.loadout.knight[2] != "": return
 	for item in run.gear:
 		if run.gear[item] > 0:
 			require(manager.equip("knight", 2, item, run.revision), "equip owned reward")
@@ -142,7 +170,7 @@ func record_turn(details: Dictionary, battle, action: Dictionary, delaying: bool
 		var intent: Dictionary = state.intents[id]
 		if not intent.done and state.units[id].hp > 0: forecasts.append([id, intent.skill, intent.targets])
 	var targets = battle.preview(actor, action.skill, action.target).targets
-	details.turns.append([state.round, actor, unit.hp, unit.tp, action.skill, targets, action.cost, forecasts, targets.map(func(id): return [state.units[id].hp, state.units[id].statuses.keys()]), action.value, delaying])
+	details.turns.append([state.round, actor, unit.hp, unit.tp, action.skill, targets, action.cost, forecasts, targets.map(func(id): return [state.units[id].hp, state.units[id].statuses.keys(), state.units[id].guard]), action.value, delaying])
 
 func measure(record: Dictionary, details: Dictionary, party_ids: Array, pool_size: int) -> Dictionary:
 	var stats = Simulator.battle_stats(record, party_ids)
@@ -156,17 +184,29 @@ func measure(record: Dictionary, details: Dictionary, party_ids: Array, pool_siz
 	stats.entry_overflow = 0
 	stats.inventory_used = {}
 	stats.equipment_effects = {}
+	stats.ward_prevented_hp = 0
+	stats.ward_hits = 0
 	stats.hp_timeline = []
 	var hp: Dictionary = {}
+	var warded: Dictionary = {}
 	var tp: Dictionary = stats.carried_tp.duplicate()
 	for id in party_ids: hp[id] = record.start.party[id].hp
 	for event in record.events:
 		match event.type:
+			"guard": warded[event.target] = event.skill == "ward"
+			"guard_expired", "defeat": warded.erase(event.get("target", event.get("actor", "")))
 			"tp_pool_discarded": stats.natural_unused += event.amount
 			"item": stats.inventory_used[event.item] = stats.inventory_used.get(event.item, 0) + 1
 			"equipment": stats.equipment_effects[event.source] = stats.equipment_effects.get(event.source, 0) + 1
 			"damage", "heal":
 				if hp.has(event.target):
+					if event.type == "damage" and warded.get(event.target, false) and event.sources.any(func(source): return source.source == "stance:guard"):
+						var unguarded: float = 0
+						for source in event.sources:
+							if source.operation == "+": unguarded += source.value
+							elif source.source != "stance:guard": unguarded = maxf(0, unguarded) * source.value
+						stats.ward_prevented_hp += mini(hp[event.target], maxi(0, floori(unguarded))) - event.amount
+						stats.ward_hits += 1
 					hp[event.target] += event.amount * (-1 if event.type == "damage" else 1)
 					stats.hp_timeline.append([event.sequence, event.round, event.target, hp[event.target], event.source])
 			"tp":
@@ -222,3 +262,25 @@ func probe(catalog, seed_value: int, delay: bool, items: bool) -> Dictionary:
 	for event in state.events:
 		if event.type == "tp" and event.source == "recovery:round": natural += event.amount
 	return {"seed": seed_value, "delay": delay, "items": items, "turns": turns, "rounds": state.round, "winner": state.winner, "tp": catalog.party_ids().map(func(id): return state.units[id].tp), "hp": catalog.party_ids().map(func(id): return state.units[id].hp), "inventory": state.inventory, "natural": natural, "damage_taken": battle.result().damage_taken}
+
+func long_fight(catalog, seed_value: int, preset: String) -> Dictionary:
+	var trial = Content.new()
+	trial.data = catalog.data.duplicate(true)
+	trial.data.units.boss.stats.MAX_HP *= 2
+	var battle = BattleEngine.new(trial)
+	battle.start(trial.data.presets[preset], seed_value, {}, ["boss"], {}, [], [{"source": "recovery:entry", "value": trial.data.rules.tp_recovery.entry}])
+	var counts = {"normal": 0, "skills": 0, "empty": 0, "natural": 0}
+	for _step in range(180):
+		var state = battle.state
+		if state.phase == "finished": break
+		var actor: String = state.actor()
+		var action = Policy.choose(Policy.options(battle, "conditional", 0), "conditional", null, false)
+		counts.empty += int(state.units[actor].tp == 0)
+		counts.normal += int(action.skill == "attack")
+		counts.skills += int(action.skill != "attack")
+		if not require(battle.submit(actor, action.skill, action.target, state.revision), "long fight submit"): break
+	require(battle.state.phase == "finished", "long fight step cap reached")
+	for event in battle.state.events:
+		if event.type == "tp" and event.source == "recovery:round": counts.natural += event.amount
+	require(counts.natural <= int(trial.data.rules.tp_recovery.pool) * 3, "long fight TP ceiling")
+	return {"seed": seed_value, "preset": preset, "rounds": battle.state.round, "winner": battle.state.winner, "counts": counts, "hp": trial.party_ids().map(func(id): return battle.state.units[id].hp), "tp": trial.party_ids().map(func(id): return battle.state.units[id].tp)}
