@@ -150,7 +150,8 @@ func forecast() -> void:
 					intent.merge({"kind": "heal", "target": allies[0], "power": int(unit.heal)}, true)
 		if s.round == 1 and s.locked.has(id): intent.merge(s.locked[id], true)
 		s.intents[id] = intent
-	record("forecast", "", "", 0, str(s.intents))
+	record("forecast", "", "")
+	events[-1].intents = s.intents.duplicate(true)
 
 func intent_power(intent: Dictionary) -> int:
 	var strength: int = int(intent.power) + (int(intent.bonus) if alive("shield") and s.units.shield.guard else 0)

@@ -31,7 +31,7 @@
     "seal":{"name":"破勢の印","owner":"blade","trigger":"break_lock","value":1,"hint":"破甲の再構え禁止をさらに1周期延長。"},
     "hook":{"name":"誘刃の鍔","owner":"blade","trigger":"taunt_mark","value":2,"hint":"挑発で予告を移すと攻撃元を標的にする。"},
     "fuse":{"name":"導火の指輪","owner":"mage","trigger":"mark_burn","value":2,"hint":"火印の標的に火傷を加える。"},
-    "glove":{"name":"爆裂の手袋","owner":"mage","trigger":"detonate_spread","value":1,"hint":"爆ぜ火で火傷を消費すると、別の生存敵1体へ伝播。"},
+    "glove":{"name":"爆裂の手袋","owner":"mage","trigger":"detonate_spread","value":1,"hint":"爆ぜ火で別の生存敵1体へ、残り回数+1（最大2）の火傷を伝播。"},
     "mail":{"name":"返礼の鎧","owner":"warden","trigger":"cover_counter","value":14,"hint":"庇護で実被害を受けた次の迎撃に反撃+14。1回分のみ。"},
     "flag":{"name":"標的の旗","owner":"warden","trigger":"split_mark","value":2,"hint":"分散で衛士が被害を受けると攻撃元を標的にする。"}
   },

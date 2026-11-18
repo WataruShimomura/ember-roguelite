@@ -363,7 +363,7 @@ func camp() -> void:
 		var status: Dictionary = route.party[id]
 		if status.hp == 0 or status.hp == status.max: continue
 		var options = row(treatment)
-		line(options,name_of(id))
+		line(options,name_of(id)).autowrap_mode = TextServer.AUTOWRAP_OFF
 		for option in [["aid","warden"],["convert","mage"],["kit",id]]:
 			var skill: String = option[0]
 			var owner: String = option[1]

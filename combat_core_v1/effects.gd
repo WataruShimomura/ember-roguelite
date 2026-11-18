@@ -120,8 +120,10 @@ static func hit(b, actor: String, target: String, skill: String, physical: bool,
 		"ignite": burn(b, target, int(Catalog.data.rules.burn_ticks), skill)
 		"detonate":
 			var remaining: Array = b.live(b.s.enemies).filter(func(id): return id != target)
-			if consumed_burn > 0 and not remaining.is_empty() and modifier(b, actor, "detonate_spread") > 0:
-				burn(b, remaining[0], consumed_burn, "gear_burn")
+			if consumed_burn > 0 and not remaining.is_empty():
+				var transfer: int = modifier(b, actor, "detonate_spread")
+				if transfer > 0:
+					burn(b, remaining[0], mini(consumed_burn + transfer, int(Catalog.data.rules.burn_ticks)), "gear_burn")
 		"interrupt":
 			var intent: Dictionary = b.s.intents[target]
 			if b.alive(target) and not intent.done and not intent.cancelled and intent.kind == "heavy" and intent.interruptible:
