@@ -1,0 +1,63 @@
+{
+  "rules": {"max_tp":30,"start_tp":18,"thresholds":[75,50,25],"threshold_tp":2,"heal_limit":1,"kit_hp":24,"start_kits":1,"guard_percent":50,"cover_percent":58,"burn_ticks":2,"burn_damage":6,"mark_rounds":2,"ritual_percent":43,"ritual_sweep_relief":16},
+  "allies": {
+    "blade":{"name":"剣士","hp":100,"power":13,"speed":20,"skills":["slashes","break","interrupt","taunt","riposte","combo"]},
+    "mage":{"name":"魔術師","hp":75,"power":12,"speed":17,"skills":["mark","ignite","detonate","wave","dampen","convert"]},
+    "warden":{"name":"衛士","hp":110,"power":11,"speed":15,"skills":["thrust","cover","split","counter","aid","rally"]}
+  },
+  "skills": {
+    "attack":{"name":"通常攻撃","cost":0,"target":"enemy","hint":"TPを温存し残HPを調整する。"},
+    "slashes":{"name":"連斬","cost":4,"target":"enemy","power":10,"hint":"通常攻撃で倒し切れない敵の行動を先に潰す。"},
+    "break":{"name":"破甲","cost":5,"target":"enemy","power":-5,"hint":"構えを解除し、次の周期まで再発動を阻止。護衛中の盾兵を選ぶ。"},
+    "interrupt":{"name":"断唱","cost":10,"target":"enemy","power":-5,"hint":"攻撃後、対象の未実行の大技を中断。ボスの再詠唱は止められない。"},
+    "taunt":{"name":"挑発","cost":3,"target":"enemy","hint":"対象の未実行の単体攻撃を剣士へ移す。"},
+    "riposte":{"name":"返し刃","cost":5,"target":"self","reduction":9,"reply":13,"hint":"自身への次の攻撃を軽減して反撃。"},
+    "combo":{"name":"連携撃","cost":7,"target":"enemy","power":-3,"bonus":22,"hint":"標的を消費して大打点。標的なしでは低効率。"},
+    "mark":{"name":"火印","cost":3,"target":"enemy","power":-6,"hint":"標的を付与する。導火装備で火傷も付与。"},
+    "ignite":{"name":"炎弾","cost":5,"target":"enemy","power":3,"hint":"火傷を付与。ターン末のダメージを2回。"},
+    "detonate":{"name":"爆ぜ火","cost":8,"target":"enemy","power":-3,"bonus":19,"hint":"火傷を消費し瞬間火力へ。ボスの儀式防護も崩す。"},
+    "wave":{"name":"火炎波","cost":10,"target":"enemies","power":1,"hint":"敵全体に術式。1体相手では割高。"},
+    "dampen":{"name":"減衰","cost":0,"target":"enemy","power":9,"hint":"未実行の攻撃予告を一度だけ弱める。打点なし。"},
+    "convert":{"name":"魔力転換","cost":6,"target":"ally","power":15,"hint":"小回復。火傷中の敵の攻撃予告も弱める。各戦1回、残りは戦間使用可。"},
+    "thrust":{"name":"槍撃","cost":4,"target":"enemy","power":4,"bonus":7,"hint":"攻撃予告の対象が衛士なら追加打点。"},
+    "cover":{"name":"庇護","cost":5,"target":"other","hint":"次の単体攻撃を衛士へ移し軽減。次の自身の手番まで。"},
+    "split":{"name":"分散","cost":0,"target":"other","hint":"次の単体攻撃を衛士と味方で分ける。全体攻撃には無効。"},
+    "counter":{"name":"迎撃","cost":6,"target":"self","reduction":12,"reply":16,"hint":"次の被弾を軽減し反撃。装備で庇護後の反撃を強化。"},
+    "aid":{"name":"応急","cost":9,"target":"ally","power":33,"hint":"対象を回復。各戦1回、残りは戦間使用可。"},
+    "rally":{"name":"結束","cost":6,"target":"other","power":9,"hint":"味方の次の攻撃を強化し、最初の命中先を標的にする。"}
+  },
+  "gear": {
+    "standard":{"name":"装備なし","trigger":"","hint":"標準の技で出撃する。"},
+    "seal":{"name":"破勢の印","owner":"blade","trigger":"break_lock","value":1,"hint":"破甲の再構え禁止をさらに1周期延長。"},
+    "hook":{"name":"誘刃の鍔","owner":"blade","trigger":"taunt_mark","value":2,"hint":"挑発で予告を移すと攻撃元を標的にする。"},
+    "fuse":{"name":"導火の指輪","owner":"mage","trigger":"mark_burn","value":2,"hint":"火印の標的に火傷を加える。"},
+    "glove":{"name":"爆裂の手袋","owner":"mage","trigger":"detonate_spread","value":1,"hint":"爆ぜ火で火傷を消費すると、別の生存敵1体へ伝播。"},
+    "mail":{"name":"返礼の鎧","owner":"warden","trigger":"cover_counter","value":14,"hint":"庇護で実被害を受けた次の迎撃に反撃+14。1回分のみ。"},
+    "flag":{"name":"標的の旗","owner":"warden","trigger":"split_mark","value":2,"hint":"分散で衛士が被害を受けると攻撃元を標的にする。"}
+  },
+  "builds": {
+    "standard":{"blade":["slashes","break","interrupt","taunt"],"mage":["mark","ignite","wave","dampen"],"warden":["thrust","cover","split","aid"]},
+    "assault":{"blade":["slashes","break","interrupt","combo"],"mage":["mark","ignite","detonate","dampen"],"warden":["thrust","cover","split","rally"]},
+    "counter":{"blade":["break","interrupt","taunt","riposte"],"mage":["mark","ignite","dampen","convert"],"warden":["cover","split","counter","aid"]},
+    "sustain":{"blade":["slashes","break","taunt","combo"],"mage":["ignite","detonate","dampen","convert"],"warden":["thrust","cover","split","aid"]}
+  },
+  "growth": {
+    "levels":[{"hp":0,"power":0},{"hp":10,"power":3},{"hp":24,"power":6}],
+    "paths":{
+      "assault":{"name":"攻撃連携","gears":["fuse","seal"]},
+      "counter":{"name":"防御反撃","gears":["mail","hook"]},
+      "sustain":{"name":"状態異常・継戦","gears":["glove","flag"]}
+    }
+  },
+  "enemies": {
+    "shield":{"name":"盾兵","speed":10,"role":"shield"},
+    "caster":{"name":"詠唱士","speed":12,"role":"caster"},
+    "mender":{"name":"治癒兵","speed":11,"role":"mender"},
+    "boss":{"name":"灰冠の詠唱王","speed":13,"role":"boss"}
+  },
+  "encounters": [
+    {"name":"通常戦 / 灰の門","enemies":{"shield":{"hp":63,"hit":10},"caster":{"hp":70,"hit":12,"heavy":31}}},
+    {"name":"強敵戦 / 灰の施療院","enemies":{"shield":{"hp":74,"hit":14},"caster":{"hp":83,"hit":14,"heavy":38},"mender":{"hp":63,"hit":10,"heal":26,"limit":2}}},
+    {"name":"ボス / 灰の玉座","enemies":{"shield":{"hp":92,"hit":16},"boss":{"hp":183,"hit":22,"heavy":71,"sweep":41}}}
+  ]
+}
