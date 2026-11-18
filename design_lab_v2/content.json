@@ -1,0 +1,28 @@
+{
+  "units": {
+    "blade": {"name":"剣士","hp":66,"moves":["rush","break","follow"]},
+    "mage": {"name":"術師","hp":54,"moves":["mark","burn","spread"],"plan_extra":"dampen"},
+    "warden": {"name":"衛士","hp":78,"moves":["spear","riposte","cover"]},
+    "shield": {"name":"盾兵","hp":54},
+    "oracle": {"name":"詠唱士","hp":52}
+  },
+  "moves": {
+    "rush": {"name":"強襲","description":"単体へ11ダメージ","target":"enemy","power":11,"plan":0,"clock":0,"delay":3},
+    "break": {"name":"破勢","description":"単体へ5ダメージ。大技を阻止／2刻遅延","target":"enemy","power":5,"plan":4,"clock":1,"delay":4},
+    "follow": {"name":"追撃","description":"単体へ5。刻印を消費して+12","target":"enemy","power":5,"plan":0,"clock":0,"delay":2},
+    "mark": {"name":"刻印","description":"単体へ4ダメージ＋刻印","target":"enemy","power":4,"plan":0,"clock":0,"delay":2},
+    "burn": {"name":"燃焼","description":"単体へ5。対象の行動前に5×最大2回","target":"enemy","power":5,"plan":3,"clock":1,"delay":4},
+    "spread": {"name":"拡散","description":"両敵へ8ダメージ","target":"all","power":8,"plan":4,"clock":0,"delay":5},
+    "dampen": {"name":"減衰","description":"選んだ敵の攻撃予告を5軽減","target":"enemy","power":5,"plan":0,"clock":0,"delay":3},
+    "spear": {"name":"槍撃","description":"単体へ8ダメージ","target":"enemy","power":8,"plan":0,"clock":0,"delay":3},
+    "riposte": {"name":"反撃の構え","description":"次に被弾した時だけ9反撃。次の自身の行動まで","target":"self","plan":0,"clock":0,"delay":2},
+    "cover": {"name":"庇護","description":"次の対象への攻撃を肩代わりし8軽減。次の自身の行動まで","target":"other","plan":3,"clock":0,"delay":4},
+    "lure": {"name":"返し槍","description":"選んだ敵の攻撃予定を自分へ。次の被弾に9反撃","target":"enemy","plan":0,"clock":0,"delay":4},
+    "heal": {"name":"治療","description":"指定した生存者のHPを最大14回復","target":"ally","power":14,"plan":4,"clock":1,"delay":5}
+  },
+  "rewards": {
+    "base":{"name":"追加装備なし"},
+    "lure":{"name":"返し槍","replace":"spear","move":"lure"},
+    "medic":{"name":"治療具","replace":"cover","move":"heal"}
+  }
+}
