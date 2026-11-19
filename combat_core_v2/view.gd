@@ -432,7 +432,7 @@ func command_panel(b) -> void:
 				render(),choice.get("target","") == id)
 	if not choice.is_empty():
 		var model = b.project(choice)
-		line(detail,"予測　" + event_text(model.events,18),17,BLUE)
+		line(detail,"予測　%s → %s\n%s" % [skill_name(choice.skill),name_of(choice.target),event_text(model.events,18)],17,BLUE)
 		var reason: String = inactive_reason(choice.skill,model.events)
 		if reason != "": line(detail,reason,16,MUTED)
 		var pending: Array = []

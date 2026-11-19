@@ -1,6 +1,7 @@
 extends SceneTree
 
 const Policy = preload("res://combat_core_v2/policy.gd")
+const Catalog = preload("res://combat_core_v2/catalog.gd")
 var view
 var count: int = 0
 var failures: int = 0
@@ -79,6 +80,12 @@ func run() -> void:
 	press("検証局面を開始")
 	var battle = view.test_battle
 	var state: Dictionary = battle.s.duplicate(true)
+	var basic = find_button("通常攻撃 ",true)
+	if basic != null:
+		basic.grab_focus()
+		key(KEY_TAB)
+		await process_frame
+		check(root.gui_get_focus_owner() != basic and view.detail_label.text.begins_with("火継ぎの連斬"),"Tab advances across commands and updates detail")
 	var taunt = find_button("挑発 ",true)
 	check(taunt != null,"foreshadowed threat has a selectable response")
 	if taunt != null:
@@ -127,7 +134,7 @@ func run() -> void:
 	check(view.route.phase == "result" and text_contains("被害計"),"battle result separate")
 	await capture("result")
 	press("レベル確認へ（次に報酬）")
-	check(text_contains("100 → 110") and view.route.level == 1,"level before/after before applying")
+	check(text_contains("100 → %d" % (100 + Catalog.data.growth.levels[1].hp)) and view.route.level == 1,"level before/after before applying")
 	await capture("level")
 	press("適用して報酬選択へ")
 	check(view.route.level == 2 and text_contains("次の報酬"),"level applies before distinct reward screen")
@@ -144,5 +151,40 @@ func run() -> void:
 	await capture("exchange")
 	press("変更を確定")
 	check(view.route.gears.get("mage","") == "fuse","owned gear equips after separate confirmation")
+	var member: String = ""
+	for id in view.route.party:
+		if 0 < view.route.party[id].hp and view.route.party[id].hp < view.route.party[id].max:
+			member = id
+			break
+	if member != "" and view.route.kits > 0:
+		var before: int = view.route.kits
+		var hp: int = view.route.party[member].hp
+		press(view.name_of(member) + " HP+",true)
+		check(view.route.kits == before-1 and view.route.party[member].hp > hp,"field care consumes one item, ready phase retained")
+	press("戦闘 2 / 3 を開始")
+	await finish_encounter()
+	check(view.route.phase == "result" and view.route.history[-1].outcome == "clear","elite ends with real result")
+	press("レベル確認へ（次に報酬）")
+	press("適用して報酬選択へ")
+	press("習得　連携撃")
+	press("獲得を確定　連携撃")
+	check("combo" in view.route.known.blade and not "combo" in view.route.moves.blade,"second reward is learned without slot replacement")
+	choose("連携撃（控え）")
+	press("変更を確定")
+	check("combo" in view.route.moves.blade and view.route.gears.get("mage","") == "fuse","second reward preserves first item")
+	press("戦闘 3 / 3 を開始")
+	await capture("boss")
+	await finish_encounter()
+	check(view.route.phase == "result" and view.route.history.size() == 3,"boss resolves through the full UI route")
+	press("冒険結果へ")
+	check(view.route.phase == "finished","explicit adventure result")
+	await capture("final")
 	print("V2 UI %s: %d checks / %d failures" % [tag,count,failures])
 	quit(0 if failures == 0 else 1)
+
+func finish_encounter() -> void:
+	for _step in range(140):
+		if view.route.phase != "battle": break
+		var move: Dictionary = Policy.select(view.route.battle,"read")
+		if not setup_action(move) or not press("この行動を実行"): break
+		await process_frame

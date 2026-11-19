@@ -130,7 +130,9 @@ static func hit(b, actor: String, target: String, skill: String, physical: bool,
 			if b.alive(target):
 				mark(b, target, int(Catalog.data.rules.mark_rounds), skill)
 				var ticks: int = modifier(b, actor, "mark_burn")
-				if ticks > 0: burn(b, actor, target, ticks, int(Catalog.data.rules.burn_damage), "gear_burn")
+				if ticks > 0:
+					var definition_gear: Dictionary = Catalog.data.gear[b.s.units[actor].gear]
+					burn(b, actor, target, ticks, int(definition_gear.get("potency",Catalog.data.rules.burn_damage)), "gear_burn")
 		"ignite": burn(b, actor, target, int(Catalog.data.rules.burn_ticks), int(Catalog.data.rules.burn_damage), skill)
 		"slashes":
 			if b.alive(target) and not victim.burn.is_empty() and victim.burn.ticks < int(Catalog.data.rules.burn_ticks):

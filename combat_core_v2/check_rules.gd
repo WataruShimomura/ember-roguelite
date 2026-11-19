@@ -46,6 +46,10 @@ func check_guards() -> void:
 		check(b.s.units[target].guard,"both enemies use generic guard")
 		use(b,"blade","break",target)
 		check(not b.s.units[target].guard and b.s.units[target].lock == 4,"same guard and gear effect " + target)
+	var exposed = F.make("F3",42,18,"standard",true)
+	var plain: Array = exposed.preview(action("blade","attack","caster"))
+	var technique: Array = exposed.preview(action("blade","break","caster"))
+	check(plain.any(func(e): return e.event == "damage" and e.amount == 13) and technique.any(func(e): return e.event == "damage" and e.amount == 8) and not technique.any(func(e): return e.event == "break"),"normal hit wins against unguarded caster")
 	var b = F.make("F1",42,0,"standard",true)
 	use(b,"blade","attack","shield")
 	use(b,"mage","dampen","caster")
@@ -82,6 +86,7 @@ func check_burn() -> void:
 	for hp in [83,19]:
 		b = F.make("F3",42,18,"standard",true,1)
 		b.s.units.caster.hp = hp
+		b.s.units.caster.cutoffs = b.s.units.caster.cutoffs.filter(func(value): return value < hp)
 		b.s.units.caster.burn.ticks = 2
 		use(b,"blade","break","shield")
 		var direct = b.copy()
@@ -90,6 +95,9 @@ func check_burn() -> void:
 		check(b.s.units.mage.tp - direct.s.units.mage.tp <= 8,"burn conversion charges TP before threshold")
 		if hp == 19:
 			check(not direct.alive("caster") and b.alive("caster"),"conversion wins the urgent kill")
+			use(b,"warden","attack","shield")
+			use(direct,"warden","attack","shield")
+			check(b.s.units.warden.hp < direct.s.units.warden.hp,"urgent kill prevents actual enemy damage")
 		else:
 			use(b,"warden","attack","shield")
 			use(direct,"warden","attack","shield")
@@ -129,7 +137,19 @@ func check_rewards() -> void:
 		if reward == "counter": check(r.exchange("warden",3,"counter") and r.moves.warden[3] == "counter","new skill available next fight")
 		if reward == "fuse": check(r.equip("mage","fuse"),"gear can now be equipped")
 		if reward == "medicine": check(r.kits == 2,"medicine is one finite item")
+		r.party.mage.hp = 33
+		if reward == "medicine": check(r.care("mage") and r.party.mage.hp == 64,"medicine changes next fight entry HP")
 		r.start()
+		if reward != "medicine":
+			var b = r.battle
+			b.s.intents.caster.merge({"kind":"strike","target":"warden","power":28},true)
+			use(b,"blade","break","shield")
+			use(b,"mage","mark","caster")
+			if reward == "fuse": check(b.s.units.caster.burn.get("actor") == "mage" and b.s.units.caster.burn.get("power") == 8,"ring makes the fixed opening a burn setup")
+			if reward == "counter":
+				use(b,"warden","counter","warden")
+				check(b.s.units.caster.burn.get("actor") == "warden","learned skill converts hit into a cross-character opener")
+		evidence["reward_opening_" + reward] = {"start":r.start_state,"events":r.battle.events}
 		r.battle.s.outcome = "clear"
 		r.collect()
 		check(r.proceed() and r.level_up() and r.take("combo" if reward != "counter" else "glove"),"second individual acquisition")

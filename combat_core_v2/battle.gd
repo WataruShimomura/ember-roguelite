@@ -123,7 +123,10 @@ func forecast() -> void:
 	for id in live(s.enemies):
 		var unit: Dictionary = s.units[id]
 		var intent = {"kind": "strike", "target": fixed_target(id, s.round), "power": int(unit.hit), "done": false, "cancelled": false, "softened": false}
-		var pattern: Array = Catalog.data.enemies[id].pattern
+		var definition: Dictionary = Catalog.data.enemies[id]
+		var pattern: Array = definition.pattern
+		if definition.has("alternate_pattern") and s.seed % int(definition.alternate_interval) == 0:
+			pattern = definition.alternate_pattern
 		match pattern[(s.round - 1) % pattern.size()]:
 			"guard":
 				if s.round >= unit.lock: intent.merge({"kind": "guard", "target": id, "power": 0}, true)
