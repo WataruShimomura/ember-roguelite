@@ -33,6 +33,7 @@ func _initialize() -> void:
 	check_burn()
 	check_items()
 	check_rewards()
+	check_wave()
 	DirAccess.make_dir_recursive_absolute("res://tests/artifacts")
 	var output = FileAccess.open("res://tests/artifacts/v2_rules.json",FileAccess.WRITE)
 	output.store_string(JSON.stringify({"checks":checks,"failures":failures,"evidence":evidence}))
@@ -103,6 +104,16 @@ func check_burn() -> void:
 			use(direct,"warden","attack","shield")
 			check(b.s.units.mage.tp > direct.s.units.mage.tp and not b.s.units.caster.burn.is_empty(),"maintaining preserves resource and a pending tick")
 		evidence["trade_%d" % hp] = {"preserve":b.events,"consume":direct.events}
+	b = F.make("F3",42,18,"glove",true,1)
+	b.s.units.shield.hp = 0
+	b.s.units.mender.hp = 0
+	use(b,"blade","attack","caster")
+	var follow = b.copy()
+	follow.s.units.mage.gear = "standard"
+	use(b,"mage","detonate","caster")
+	use(follow,"mage","detonate","caster")
+	check(b.s.intents.caster.power == 23 and follow.s.intents.caster.power == 28,"solo consumption gear changes the pending damage")
+	evidence.solo_consumption = {"with":b.events,"without":follow.events}
 
 func check_items() -> void:
 	for delay in [false,true]:
@@ -155,3 +166,16 @@ func check_rewards() -> void:
 		check(r.proceed() and r.level_up() and r.take("combo" if reward != "counter" else "glove"),"second individual acquisition")
 		check(r.moves.warden[3] == ("counter" if reward == "counter" else "brace"),"second reward retains first configuration")
 		evidence["reward_" + reward] = r.records()
+
+func check_wave() -> void:
+	var b = F.make("F6",42,18,"standard",true,1)
+	b.s.units.mage.moves[2] = "wave"
+	use(b,"blade","attack","shield")
+	for id in b.s.enemies:
+		b.s.units[id].hp = b.s.units[id].cutoffs[0] + 1
+	var pivot: int = b.events.size()
+	use(b,"mage","wave","all")
+	var events: Array = b.events.slice(pivot)
+	check(events.filter(func(e): return e.event == "threshold").size() == 3,"one newly crossed cutoff per enemy")
+	check(b.s.units.mage.tp == 14 and b.s.units.blade.tp == 24 and b.s.units.warden.tp == 24,"wave costs ten and grants six per living member")
+	evidence.wave = events

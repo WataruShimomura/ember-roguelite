@@ -72,8 +72,14 @@ static func tick_burn(b, id: String) -> void:
 
 static func spread_consumed(b, target: String, status: Dictionary) -> void:
 	var remaining: Array = b.live(b.s.enemies).filter(func(id): return id != target)
-	if remaining.is_empty(): return
 	for owner in b.live(PARTY):
+		if remaining.is_empty():
+			var gear: Dictionary = Catalog.data.gear[b.s.units[owner].gear]
+			var relief: int = int(gear.get("solo_weakening",0))
+			if relief > 0 and b.alive(target) and can_weaken(b,target):
+				b.record("gear",owner,target,relief,b.s.units[owner].gear)
+				weaken(b,owner,target,relief,"burn_gear")
+			continue
 		var transfer: int = modifier(b,owner,"party_burn_spread")
 		if transfer > 0:
 			burn(b,owner,remaining[0],mini(status.ticks + transfer,int(Catalog.data.rules.burn_ticks)),status.power,"spread")
@@ -86,9 +92,13 @@ static func landing(b, target: String, physical: bool) -> String:
 			return id
 	return target
 
-static func weaken(b, actor: String, target: String, value: int, source: String) -> void:
+static func can_weaken(b, target: String) -> bool:
 	var intent: Dictionary = b.s.intents.get(target, {})
-	if intent.get("done", true) or intent.cancelled or intent.softened or not intent.kind in ["strike", "heavy", "sweep"]: return
+	return not intent.get("done",true) and not intent.cancelled and not intent.softened and intent.kind in ["strike","heavy","sweep"]
+
+static func weaken(b, actor: String, target: String, value: int, source: String) -> void:
+	if not can_weaken(b,target): return
+	var intent: Dictionary = b.s.intents[target]
 	var actual: int = mini(int(intent.power), value)
 	intent.power -= actual
 	intent.softened = true

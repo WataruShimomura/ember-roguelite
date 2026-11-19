@@ -126,9 +126,10 @@ def validate(raw, reference=None):
 
 
 def main():
-    on, off, previous = (load(key) for key in ("threshold", "none", "stage2_before"))
+    on, off, previous, middle = (load(key) for key in ("threshold", "none", "stage2_before", "stage2_mid"))
     validate(off, validate(on))
     validate(previous)
+    validate(middle)
     fixed = load("rules")
     assert fixed["failures"] == 0
     matrix = {
@@ -138,6 +139,7 @@ def main():
         "primary_policies": PRIMARY,
         "check_counts": {"threshold": on["checks"], "none": off["checks"], "rules": fixed["checks"]},
         "stage2_before": summarize(previous),
+        "stage2_mid": summarize(middle),
         "threshold": summarize(on),
         "no_recovery": summarize(off),
         "fireless": on["fireless"],
